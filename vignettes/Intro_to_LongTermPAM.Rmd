@@ -537,16 +537,7 @@ levels(preproces.20162017$tree_num) # we can see now 'Unknow1', 'Unknow2' and 'P
 head(preproces.20162017)
 ```
 
-## 4.3 PAR correction
-
-since we did PAR sensor calibration in this observation season, we need
-correct PAR data using our calibration coefficients
-
-```{r}
-#preproces.20162017$par_PAM<-preproces.20162017$par_PAM*1.4805+12.981
-```
-
-## 4.4 remove first few days data
+## 4.3 remove first few days data
 
 **Here we remove the data before 2016-11-05 12:00 after checking the
 data using WinControl software**
@@ -557,7 +548,7 @@ preproces.20162017<-preproces.20162017 %>% subset(datetime>ymd_hms('2016-11-05 1
 head(preproces.20162017)
 ```
 
-## 4.5 correct F if needed
+## 4.4 correct F if needed
 
 Temperature dependency of ChlF correction. The correction parameters
 were given default value but can also be adjusted. Details check helps
@@ -567,7 +558,7 @@ of correctF() function
 preproces.20162017.correctF<-correctF(preproces.20162017)
 ```
 
-## 4.6 save the modified/corrected file
+## 4.5 save the modified/corrected file
 
 ```{r}
 # write.table function from R
@@ -575,7 +566,7 @@ preproces.20162017.correctF<-correctF(preproces.20162017)
 write.table(preproces.20162017.correctF,file='corrected2016-2017.dat',row.names = F,sep = ';')
 ```
 
-## 4.5. data cleaning
+## 4.6. data cleaning
 
 define work directory to save the data and figures
 
@@ -706,7 +697,7 @@ plotCheckfilter(newdata=flag6.adjacent,rawdata=flag0,fieldnote = F,
                 save.path=save.fitlerFigure.path)
 ```
 
-## 4.6. calculate other paramters
+## 4.7. calculate other paramters
 
 ```{r}
 create_dir_if_not_exists('figures/figure_FmR_FoR')
