@@ -68,7 +68,7 @@ organize.PAMdata<-function(data,shortnames,i){
 #' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
 #' @import stringr
 #' @import suncalc
-#' @importFrom data.table data.table setDT
+#' @importFrom data.table data.table setDT as.data.table
 #' @import splitstackshape
 #' @import dplyr
 #' @importFrom plyr ldply
@@ -286,7 +286,9 @@ readPAM<-function(source.path,#folder where files stored
   range.date<-
     range.date.data %>%
     group_by(head,tree_num) %>%
-    plyr::summarise(start.date=min(datetime,na.rm = T),end.date=max(datetime,na.rm = T))
+    dplyr::summarise(start.date=min(datetime,na.rm = T),
+                     end.date=max(datetime,na.rm = T),
+                     .groups = 'drop')
 
 
   write.table(range.date %>% dplyr::select(head,tree_num,start.date,end.date),file =
