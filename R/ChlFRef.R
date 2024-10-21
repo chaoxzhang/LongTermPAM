@@ -8,6 +8,13 @@
 #' @param FvFmR the maximum Fv/Fm value when there is no NPQ or NPQ is close to 0. For example, for Scots pine needles, Fv/FmR can be around 0.84.
 #' @param save.file TRUE or FALSE. If TRUE, plotted figures and output data will be saved to local folder via save.path argument
 #' @param save.path local folder for saving the plotted figures and output data generated from this function
+#' @importFrom lubridate year month
+#' @import data.table
+#' @import dplyr
+#' @importFrom plyr ldply
+#' @import ggplot2
+#' @import scales
+#' @importFrom cowplot plot_grid
 #' @return This function will return (1) a data frame including estimated FmR, FoR and the summary (R2, bias,RMSE,and RRMSE) of non-linear regression model simulation between Fm and Fv/Fm data from entire observation period, and (2) a corresponding figure.
 #' @export
 ChlFRef<-function(raw.fvfm,

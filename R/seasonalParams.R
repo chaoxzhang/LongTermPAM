@@ -7,6 +7,9 @@
 #' @param filter.fvfm the final MONI-PAM fvfm data retrieved from cleaning step 6 (i.e., flag6.fvfm in Intro_to_processMONIPAM.Rmd) by using [FindFvFm] function in this R package
 #' @param save.file TRUE or FALSE. If TRUE, output data will be saved to local folder via save.path argument
 #' @param save.path local folder for saving the plotted figures generated from this function
+#' @import lubridate
+#' @import data.table
+#' @import dplyr
 #' @references reference Porcar‐Castell, A. (2011). A high‐resolution portrait of the annual dynamics of photochemical and non‐photochemical quenching in needles of Pinus sylvestris. Physiologia Plantarum, 143(2), 139-153. https://doi.org/10.1111/j.1399-3054.2011.01488.x
 #' @return This function will return a data frame including new estimated seasonal parameters and Fv/Fm data
 #' @export

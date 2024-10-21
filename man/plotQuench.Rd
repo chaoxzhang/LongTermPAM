@@ -2,16 +2,16 @@
 % Please edit documentation in R/plotQuench.R
 \name{plotQuench}
 \alias{plotQuench}
-\title{Diurnal quenching parameters data visualization with dairy note and sunlight time marked in the figure}
+\title{Diurnal quenching parameters data visualization with fieldnote and sunlight time marked in the figure}
 \usage{
-plotQuench(diurnal.para,diary,diary.data,save.path)
+plotQuench(diurnal.para,fieldnote,fieldnote.data,save.path)
 }
 \arguments{
 \item{diurnal.para}{estimated diurnal parameters generated from \link{diurnalParams} function in this R package}
 
-\item{diary}{TRUE or FALSE. If diary = TRUE, dairy data should be assigned.}
+\item{fieldnote}{TRUE or FALSE. If fieldnote = TRUE, fieldnote data should be assigned.}
 
-\item{diary.data}{a diary file which can be such as .csv or .dat file but with a specific data format. You can check the example data from this package using data("diary_2014_2015"). In this dataset, head and tree_num should be same with your MONI-PAM data, text in 'remark.plot' column will be shown in the plotted figure to show what has happened for that 'head'/ 'tree_num'/'head_tree' on which 'datetime' so it should be very short and clean. 'remark' column can can contain full description for remark.plot. 'manager' column shows who found that issue or conducted certain activity for that sensor (e.g., calibration)}
+\item{fieldnote.data}{a fieldnote file which can be such as .csv or .dat file but with a specific data format. You can check the example data from this package using data("fieldnote_2014_2015"). In this dataset, head and tree_num should be same with your MONI-PAM data, text in 'remark.plot' column will be shown in the plotted figure to show what has happened for that 'head'/ 'tree_num'/'head_tree' on which 'datetime' so it should be very short and clean. 'remark' column can can contain full description for remark.plot. 'manager' column shows who found that issue or conducted certain activity for that sensor (e.g., calibration)}
 
 \item{save.path}{local folder for saving your plotted figures}
 }
@@ -19,5 +19,5 @@ plotQuench(diurnal.para,diary,diary.data,save.path)
 \link{plotQuench} will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
 }
 \description{
-This function will visualize MONI-PAM diurnal quenching parameters data (qLT and qLr) and PAR and temperature in one figure with 10 days as a group plotting for each head and the dairy note will be marked in the figure if the note file is available. At the same time, this function will also show  the sunlight time (colorful vertical lines) in the plot, sunrise and sunsetStart are 'indianred', solarNoon is 'goldenrod', and dawn and dusk are 'purple'
+This function will visualize MONI-PAM diurnal quenching parameters data (qLT and qLr) and PAR and temperature in one figure with 10 days as a group plotting for each head and the fieldnote will be marked in the figure if the note file is available. At the same time, this function will also show  the sunlight time (colorful vertical lines) in the plot, sunrise and sunsetStart are 'indianred', solarNoon is 'goldenrod', and dawn and dusk are 'purple'
 }

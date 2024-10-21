@@ -1,3 +1,5 @@
+#' organize data function used only for readPAM function
+#' @export
 organize.PAMdata<-function(data,shortnames,i){
 
   data$date<-ymd(data$YYMMDD)
@@ -62,6 +64,15 @@ organize.PAMdata<-function(data,shortnames,i){
 #' @param tz.summer UTC offset of study site in summer, for example, it is 3 for Finland
 #' @param tz.winter UTC offset of study site in winter, for example, it is 2 for Finland
 #' @param measure.time which time zone used for measurement: 'winter','summer' or 'local'
+#'
+#' @importFrom lubridate ymd hour year month ymd_hms date day
+#' @import stringr
+#' @import suncalc
+#' @import data.table
+#' @import splitstackshape
+#' @import dplyr
+#' @import plyr
+#' @import tidyr
 #'
 #' @return list 1: combined original data; list 2: combined organized data and extra columns for further data cleaning purpose
 #'
@@ -257,7 +268,7 @@ readPAM<-function(source.path,#folder where files stored
   range.date<-
     range.date.data %>%
     group_by(head,tree_num) %>%
-    summarise(start.date=min(datetime,na.rm = T),end.date=max(datetime,na.rm = T))
+    dplyr::summarise(start.date=min(datetime,na.rm = T),end.date=max(datetime,na.rm = T))
 
 
   write.table(range.date %>% dplyr::select(head,tree_num,start.date,end.date),file =

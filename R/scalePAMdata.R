@@ -5,6 +5,10 @@
 #' @usage scalePAMdata(PAM.data)
 #' @param PAM.data a combined organized MONI-PAM data which is generated from [readPAM] function, or a MONI-PAM data after data filtering which is generated from filter function in this package such as [filter1.NA], [filter2.night] and so on.
 #'
+#' @import lubridate
+#' @import data.table
+#' @import dplyr
+#'
 #' @return [scalePAMdata] will return a data.table which contains the maximum and minimum values of F',FM',YII, PAR, and temperature values for each plotting groups (every 10 days as a group) and each MONI-head
 #' @export
 scalePAMdata<-function(PAM.data){

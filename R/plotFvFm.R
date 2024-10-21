@@ -55,6 +55,14 @@ scaleFvFm<-function(PAM.fvfm){
 #' @param plot.title any text to describe clearly about your figure content
 #' @param save.path local folder for saving the plotted figures generated from this function
 #'
+#' @import lubridate
+#' @import data.table
+#' @import dplyr
+#' @import ggplot2
+#' @import scales
+#' @import patchwork
+#' @import cowplot
+#'
 #' @return This function will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
 #' @export
 plotFvFm<-function(PAM.fvfm,plot.title,save.path,fieldnote,fieldnote.data){

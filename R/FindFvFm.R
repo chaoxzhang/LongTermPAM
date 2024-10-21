@@ -8,6 +8,11 @@
 #' @param save.title any text that will be used as the saved file name
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if False, the file will not be saved into local folder
 #'
+#' @import lubridate
+#' @import data.table
+#' @import dplyr
+#' @import plyr
+#'
 #' @return [FindFvFm] will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a '.dat' file.
 #' @export
 FindFvFm<-function(PAM.data,save.path,save.title, save.file){
@@ -68,7 +73,7 @@ FindFvFm<-function(PAM.data,save.path,save.title, save.file){
 
   fvfm.all<-fvfm.filldate %>%
     merge(noonmean.PAR,all=T,by=c('date','head_tree','head','tree_num')) %>%
-    select(date,head_tree,head,tree_num,noonmean_PAR,nightmean_temp,
+    dplyr::select(date,head_tree,head,tree_num,noonmean_PAR,nightmean_temp,
            F0,Fm,FvFm)
 
 

@@ -7,6 +7,11 @@
 #' @param FmR.data estimated chlorophyll fluorescence reference data, which can be retrieved from [ChlFRef] function in this R package, or prepared by yourself. This data should be a data frame or data table and include columns 'season','head_tree','head','tree_num','FmR' and 'FoR'
 #' @param save.file TRUE or FALSE. If TRUE, output data will be saved to local folder via save.path argument
 #' @param save.path local folder for saving the output data generated from this function
+#'
+#' @import lubridate
+#' @import data.table
+#' @import dplyr
+#'
 #' @references reference Porcar‐Castell, A. (2011). A high‐resolution portrait of the annual dynamics of photochemical and non‐photochemical quenching in needles of Pinus sylvestris. Physiologia Plantarum, 143(2), 139-153. https://doi.org/10.1111/j.1399-3054.2011.01488.x
 #' @return This function will return a data frame including estimated diurnal parameters and original data
 #' @export
@@ -21,14 +26,14 @@ diurnalParams<-function(filtered.data,
   #organize data structure
   filtered.fvfm<-
     filtered.fvfm %>%
-    select(date,head_tree,head,tree_num,F0,Fm,FvFm) %>%
+    dplyr::select(date,head_tree,head,tree_num,F0,Fm,FvFm) %>%
     mutate(across(c(head,head_tree,tree_num),as.factor)) %>%
     mutate(date=as.Date(date))
 
   #organize data structure
   FmR.data<-
     FmR.data %>%
-    select(season,head_tree,head,tree_num,FmR,FoR) %>%
+    dplyr::select(season,head_tree,head,tree_num,FmR,FoR) %>%
     mutate(across(c(season,head,head_tree,tree_num),as.factor))
 
   diurnal.all<-

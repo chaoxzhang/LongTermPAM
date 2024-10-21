@@ -5,6 +5,9 @@
 #' @usage formatPAMdata(PAM.data)
 #' @param PAM.data a combined organized MONI-PAM data which is generated from [readPAM] function, or a MONI-PAM data after data filtering which is generated from filter function in this package such as [filter1.lowF], [filter2.night] and so on.
 #'
+#' @import lubridate
+#' @import data.table
+#'
 #' @return [formatPAMdata] will generate a MONI-PAM data with all the variables in proper data format for later data filtering and processing
 #'
 #' @export
