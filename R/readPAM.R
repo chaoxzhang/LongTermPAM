@@ -13,22 +13,22 @@ organize.PAMdata<-function(data,shortnames,i){
   # to make sure only "-" is replaced and the
   # negative values will not be deleted
   data$F_<-gsub(pattern = '^-$',replacement = NA,data$F_)
-  data$F_<-as.numeric(data$F_)
+  data$F_<-suppressWarnings(as.numeric(data$F_))
 
   data$Fm_<-gsub(pattern = '^-$',replacement = NA,data$Fm_)
-  data$Fm_<-as.numeric(data$Fm_)
+  data$Fm_<-suppressWarnings(as.numeric(data$Fm_))
 
   data$YII<-gsub(pattern = '^-$',replacement = NA,data$YII)
-  data$YII<-as.numeric(data$YII)
+  data$YII<-suppressWarnings(as.numeric(data$YII))
 
   data$par_PAM<-gsub(pattern = ' ',replacement = '',data$par_PAM)
-  data$par_PAM<-as.numeric(data$par_PAM)
+  data$par_PAM<-suppressWarnings(as.numeric(data$par_PAM))
 
   data$ETR<-gsub(pattern = '-',replacement = NA,data$ETR)
-  data$ETR<-as.numeric(data$ETR)
+  data$ETR<-suppressWarnings(as.numeric(data$ETR))
 
   data$temp_PAM<-gsub(pattern = ' ',replacement = '',data$temp_PAM)
-  data$temp_PAM<-as.numeric(data$temp_PAM)
+  data$temp_PAM<-suppressWarnings(as.numeric(data$temp_PAM))
   return(data)
 
 }
@@ -99,14 +99,8 @@ readPAM<-function(source.path,#folder where files stored
       raw$ID<-1:nrow(raw)
       raw$V1<-iconv(raw$V1, to = "UTF-8", sub = "byte")
       head.count<-nrow(raw[grep('Device|device',raw$V1),])
-      data.count<-nrow(raw[grep('SG',raw$V1),])
-      newdevice.count<-nrow(raw[grep('New',raw$V1),])
-      treenum.info<-length(cSplit(raw[grep('Device|device',raw$V1),],
-                    'V1',sep=';',type.convert = F))
-      head.num.count<-nrow(unique(cSplit(raw[grep('Device|device',raw$V1),],'V1',sep = ';',type.convert = F)[,5]))
-      tree.num.count<-nrow(unique(cSplit(raw[grep('Device|device',raw$V1),],'V1',sep = ';',type.convert = F)[,8]))
-      if (isTRUE(head.count==0)){#when no head information
-        #was recorded
+      if (isTRUE(head.count==0)){
+        #when no head information was recorded
         nohead<-
           paste(filenames[fn],' is read into the file but this file did not
           include header information, please check the file and add the
@@ -114,6 +108,19 @@ readPAM<-function(source.path,#folder where files stored
         print(nohead)
         write.table(nohead,append = T,col.names = F,row.names = F,
                     file = paste0(save.path,'/rawFile_noHeadInfo.txt'))
+      } else { # when there is a head information, continue following lines
+        data.count<-nrow(raw[grep('SG',raw$V1),])
+        newdevice.count<-nrow(raw[grep('New',raw$V1),])
+        treenum.info<-length(cSplit(raw[grep('Device|device',raw$V1),],
+                                    'V1',sep=';',type.convert = F))
+        head.num.count<-nrow(unique(cSplit(raw[grep('Device|device',raw$V1),],
+                                           'V1',sep = ';',type.convert = F)[,5]))
+        tree.num.count<-nrow(unique(cSplit(raw[grep('Device|device',raw$V1),],
+                                           'V1',sep = ';',type.convert = F)[,8]))
+      }
+
+      if (isTRUE(head.count==0)){#when no head information
+        #was recorded
         raw.split.col<-cSplit(raw,'V1', sep = ';',type.convert = F)
         raw.remain<-raw.split.col[,c(1:3,6,8:13)]
         names(raw.remain)<-c('ID','YYMMDD','HHMMSS','head','F_','Fm_',
@@ -352,7 +359,7 @@ readPAM<-function(source.path,#folder where files stored
 
   #use such as sunrise to get the UTC offset hour(s)
   suntime$tz.num<-ymd_hms(suntime$sunrise,tz='UTC')-suntime$sunrise
-  suntime$tz.num<-as.numeric(suntime$tz.num)
+  suntime$tz.num<-suppressWarnings(as.numeric(suntime$tz.num))
   suntime[,19:32]<-NA
   names(suntime)[19:32]<-namelist.new
   for (i in 1:14){

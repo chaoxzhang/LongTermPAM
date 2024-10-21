@@ -62,7 +62,7 @@ data and make them easily read in R
 ```{r}
 PAM2014.2015<-
   readPAM(source.path=system.file("extdata/2014-2015/",package = "LongTermPAM"),
-               pam.pattern = '.PAM',
+               pam.pattern = '.PAM|.pam',
                save.path = getwd(),# it is better to modify this to your local path
                site.lat =61.84562, # hyytiala latitude
                site.lon = 24.29077, # hyytiala longitude
