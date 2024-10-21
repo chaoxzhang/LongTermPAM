@@ -452,7 +452,7 @@ calculation method and parameter description in Porcar-Castell et al.
 2011 and Zhang et al. XX
 
 ```{r}
-seas.para<-seasonalParams(filtered.fvfm = flag6.fvfm,
+seas.para< - seasonalParams(filtered.fvfm = flag6.fvfm,
                            # only the FmR and FoR estimated from final filtered
                            # data will be used to calculate ChlF parameters
                            FmR.data = FmR.df %>% subset(var=='Filtered data'),
