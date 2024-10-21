@@ -456,7 +456,7 @@ seas.para<-seasonalParams(filtered.fvfm = flag6.fvfm,
                            # only the FmR and FoR estimated from final filtered
                            # data will be used to calculate ChlF parameters
                            FmR.data = FmR.df %>% subset(var=='Filtered data'),
-                           save.file = T,save.path = 'saved data')
+                           save.file = T,save.path = 'saved data')  
 names(seas.para)
 ```
 
