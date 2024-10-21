@@ -8,11 +8,12 @@
 #' @param save.title any text that will be used as the saved file name
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if False, the file will not be saved into local folder
 #'
-#' @import lubridate
-#' @import data.table
+#' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
+#' @importFrom data.table data.table
 #' @import dplyr
-#' @import plyr
-#'
+#' @importFrom plyr ldply
+#' @importFrom tidyr complete nesting
+
 #' @return [FindFvFm] will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a '.dat' file.
 #' @export
 FindFvFm<-function(PAM.data,save.path,save.title, save.file){

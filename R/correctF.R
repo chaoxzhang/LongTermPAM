@@ -13,8 +13,6 @@
 #' @param Fmlevel.a Fm' signal correction parameter a
 #' @param Fmlevel.b Fm' signal correction parameter b
 #'
-#' @import lubridate
-#' @import data.table
 #' @import dplyr
 #'
 #' @return This function will data table

@@ -48,14 +48,14 @@ ScaleSeasonPara<-function(season.param){
 #' @param fieldnote TRUE or FALSE. If fieldnote = TRUE, fieldnote data should be assigned.
 #' @param fieldnote.data a fieldnote file which can be such as .csv or .dat file but with a specific data format. You can check the example data from this package using data("fieldnote_2014_2015"). In this dataset, head and tree_num should be same with your MONI-PAM data, text in 'remark.plot' column will be shown in the plotted figure to show what has happened for that 'head'/ 'tree_num'/'head_tree' on which 'datetime' so it should be very short and clean. 'remark' column can can contain full description for remark.plot. 'manager' column shows who found that issue or conducted certain activity for that sensor (e.g., calibration)
 #'
-#' @import lubridate
-#' @import data.table
+#' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
+#' @importFrom data.table data.table setDT
 #' @import dplyr
 #' @import ggplot2
 #' @import scales
-#' @import patchwork
+#' @importFrom patchwork plot_layout
+#' @importFrom cowplot ggdraw draw_label plot_grid
 #'
-#' @import cowplot
 #' @return [plotSeasonPara] will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
 #' @export
 plotSeasonPara<-function(season.param,

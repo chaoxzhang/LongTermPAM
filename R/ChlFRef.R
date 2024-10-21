@@ -8,8 +8,7 @@
 #' @param FvFmR the maximum Fv/Fm value when there is no NPQ or NPQ is close to 0. For example, for Scots pine needles, Fv/FmR can be around 0.84.
 #' @param save.file TRUE or FALSE. If TRUE, plotted figures and output data will be saved to local folder via save.path argument
 #' @param save.path local folder for saving the plotted figures and output data generated from this function
-#' @importFrom lubridate year month
-#' @import data.table
+#' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
 #' @import dplyr
 #' @importFrom plyr ldply
 #' @import ggplot2

@@ -9,13 +9,13 @@
 #' @param plot.title any text to describe clearly about your figure content
 #' @param save.path local folder for saving your plotted figures
 #'
-#' @import lubridate
-#' @import data.table
+#' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
+#' @importFrom data.table data.table setDT
 #' @import dplyr
 #' @import ggplot2
 #' @import scales
-#' @import patchwork
-#' @import cowplot
+#' @importFrom patchwork plot_layout
+#' @importFrom cowplot ggdraw draw_label plot_grid
 #'
 #' @return [plotRawData] will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
 #' @export

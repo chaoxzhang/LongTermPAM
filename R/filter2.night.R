@@ -56,10 +56,8 @@ filter.night.fc<-function(data,period,f2.fm,f2.fmYII){
 #' @param f2.fmYII the threshold of ratio between percentage change of Fm' between time2 and time1 and of YII between time2 and time1. Default value is 3, we recommend this argument can be set as default value or adjusted between 2 and 5 by an interval of 1
 #' @param save.path local folder for saving your output file
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder
-#'
-#' @import lubridate
-#' @import data.table
-#' @import plyr
+
+#' @importFrom plyr ldply
 #'
 #' @return [filter2.night] will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter2night.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season respectively. This output file will contain one new column compared with output file from [filter1.lowF] function named as 'flag2.night'. This column only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset.
 #' @export
