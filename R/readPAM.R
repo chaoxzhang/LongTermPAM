@@ -8,7 +8,7 @@ organize.PAMdata<-function(data,shortnames,i){
   data$filename<-shortnames[i]
 
   data$tree_num<-gsub(pattern = ' ',replacement = '',data$tree_num)
-  data$tree_num<-as.factor(data$tree_num)
+  data$tree_num<-suppressWarnings(as.factor(data$tree_num))
   #add "^" before and "$" after "-" for F_ and Fm_,
   # to make sure only "-" is replaced and the
   # negative values will not be deleted
@@ -115,8 +115,12 @@ readPAM<-function(source.path,#folder where files stored
                                     'V1',sep=';',type.convert = F))
         head.num.count<-nrow(unique(cSplit(raw[grep('Device|device',raw$V1),],
                                            'V1',sep = ';',type.convert = F)[,5]))
-        tree.num.count<-nrow(unique(cSplit(raw[grep('Device|device',raw$V1),],
-                                           'V1',sep = ';',type.convert = F)[,8]))
+        if (treenum.info==8){
+          tree.num.count<-nrow(unique(cSplit(raw[grep('Device|device',raw$V1),],
+                                             'V1',sep = ';',type.convert = F)[,8]))
+        } else {
+          tree.num.count<-0
+        }
       }
 
       if (isTRUE(head.count==0)){#when no head information
@@ -125,7 +129,7 @@ readPAM<-function(source.path,#folder where files stored
         raw.remain<-raw.split.col[,c(1:3,6,8:13)]
         names(raw.remain)<-c('ID','YYMMDD','HHMMSS','head','F_','Fm_',
                              'par_PAM','YII','ETR','temp_PAM')
-        raw.head<-raw.head[!raw.head$head==0,]
+        raw.head<-raw.remain[!raw.remain$head==0,]
         raw.remain$head<-as.factor(raw.remain$head)
         raw.remain$tree_num<-NA
         raw.remain<-organize.PAMdata(raw.remain,shortnames,i=fn)
@@ -187,8 +191,15 @@ readPAM<-function(source.path,#folder where files stored
       } else {
         raw.head.1col<-raw[grep('Device|device',raw$V1),]
         raw.head<-cSplit(raw.head.1col,'V1', sep = ';',type.convert = F)
-        names(raw.head)<-c('ID','YYMMDD','HHMMSS','PARAMETER',
+        if (isTRUE(treenum.info==7)){
+          names(raw.head)<-c('ID','YYMMDD','HHMMSS','PARAMETER',
+                             'head','V2','DEVICE')
+          raw.head$tree_num<-NA
+        } else {
+          names(raw.head)<-c('ID','YYMMDD','HHMMSS','PARAMETER',
                           'head','V2','DEVICE','tree_num')
+        }
+
         raw.head<-raw.head[!raw.head$head==0,]
         raw.head$head<-as.factor(raw.head$head)
         raw.head$tree_num<-as.factor(raw.head$tree_num)
