@@ -35,22 +35,6 @@ library(LongTermPAM)
 getwd() 
 ```
 
-# load the required R packages 
-
-some other R packages will be need in order to run functions inside 'LongTermPAM' package
-
-```{r packages}
-package.list<-c('plyr','splitstackshape','lubridate','stringr','data.table',
-                'tidyr','suncalc','dplyr','ggplot2','scales','ggtext','ggpubr',
-                'cowplot','patchwork')
-lapply(package.list, FUN = function(p) {
-   if(!do.call("require", list(p))) {
-     install.packages(p)
-     library(p)
-   } 
-})
-```
-
 # 1. organize and pre-process MONI-PAM data
 
 ## 1.1 read and organize MONIPAM data: readPAM function
