@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
-**The user can download this Rmarkdown file, replace the example dataset, and process your own dataset using this file.**
+**To test the code and clean your own dataset, the user can download the Rmarkdown file "Intro_To_LongTermPAM.Rmd" to the local directory from here: "https://github.com/chaoxzhang/LongTermPAM/tree/main/vignettes/". The example dataset inside this Rmd file is located at: "https://github.com/chaoxzhang/LongTermPAM/tree/main/inst/extdata". To process your own dataset, you can replace the example dataset to your own dataset using this Rmarkdown file.**
 
 # Install LongTermPAM package using:
 
