@@ -31,6 +31,11 @@ knitr::opts_chunk$set(eval = FALSE)
 # load LongTermPAM package
 library(LongTermPAM)
 
+#load other packages need used for this file
+
+library(data.table)
+library(dplyr)
+library(lubridate)
 # check the work directory location
 getwd() 
 ```
