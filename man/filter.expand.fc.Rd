@@ -2,24 +2,10 @@
 % Please edit documentation in R/filter5.expand.R
 \name{filter.expand.fc}
 \alias{filter.expand.fc}
-\title{Filter MONI-PAM data step 5,remove additionally abnormal low Fm’ data that is or are adjacent to previously filtered data}
+\title{filter logical function for filter5.expand}
 \usage{
-filter5.expand(PAM.data,save.path,save.file,f5.fm=0.2,f5.fmYII=3)
-}
-\arguments{
-\item{f5.fm}{the threshold of percentage change of Fm' between time2 and time1. Default value is 0.2, we recommend this argument can be adjusted from 0.05 to 0.5 by an interval of 0.05.}
-
-\item{f5.fmYII}{the threshold of ratio between percentage change of Fm' between time2 and time1 and of YII between time2 and time1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.}
-
-\item{PAM.data}{a data.table or data.frame MONI-PAM data generated from \link{filter4.FvFm} function.}
-
-\item{save.path}{local folder for saving your output file}
-
-\item{save.file}{If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder}
-}
-\value{
-\link{filter5.expand} will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter5expand.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season respectively. This output file will contain one new column compared with output file from \link{filter4.FvFm} function named as 'flag5.expand'. This column only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset.
+\method{filter}{expand.fc}(data, f5.fm, f5.fmYII)
 }
 \description{
-Details see Zhang et al.,202X. paper link url.
+filter logical function for filter5.expand
 }
