@@ -127,8 +127,8 @@ filter.FvFm.fc42<-function(data,f4.fm,f4.fmYII){
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter3.day] function.
 #' @param save.path local folder for saving your output file
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder
-#' @param f4.fm the threshold of percentage change of Fm' between time2 and time1. Default value is 0.15, we recommend this argument can be adjusted from 0.05 to 0.2 by an interval of 0.05.
-#' @param f4.fmYII the threshold of ratio between percentage change of Fm' between time2 and time1 and of YII between time2 and time1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
+#' @param f4.fm the threshold of percentage change of Fm between day2 and day1. Default value is 0.15, we recommend this argument can be adjusted from 0.05 to 0.2 by an interval of 0.05.
+#' @param f4.fmYII the threshold of ratio between percentage change of Fm between day2 and day1 and of FvFm between day2 and day1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
 #'
 #' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
 #' @importFrom plyr ldply

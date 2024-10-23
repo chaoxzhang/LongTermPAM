@@ -363,9 +363,9 @@ filter.v.fc<-function(data){
 #'
 #' @usage filter3.day(PAM.data,f3.YII=0.02,f3.fm=0.1,f3.fmYII=3,save.path,save.file)
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter2.night] function.
-#' @param f3.YII the threshold of percentage change of YII between time2 and time1. Default value is 0.02, we recommend this argument can be adjusted from 0.01 to 0.05 by an interval of 0.01.
-#' @param f3.fm the threshold of percentage change of Fm' between time2 and time1. Default value is 0.1, we recommend this argument can be adjusted from 0.01 to 0.2 by an interval of 0.05.
-#' @param f3.fmYII the threshold of ratio between percentage change of Fm' between time2 and time1 and of YII between time2 and time1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
+#' @param f3.YII the threshold of percentage change of YII between point2 and point1. Default value is 0.02, we recommend this argument can be adjusted from 0.01 to 0.05 by an interval of 0.01.
+#' @param f3.fm the threshold of percentage change of Fm' between point2 and point1. Default value is 0.1, we recommend this argument can be adjusted from 0.01 to 0.2 by an interval of 0.05.
+#' @param f3.fmYII the threshold of ratio between percentage change of Fm' between point2 and point1 and of YII between point2 and point1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
 #' @param save.path local folder for saving your output file
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder
 

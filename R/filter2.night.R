@@ -52,8 +52,8 @@ filter.night.fc<-function(data,period,f2.fm,f2.fmYII){
 #'
 #' @usage filter2.night(PAM.data,f2.fm=0.03,f2.fmYII=3,save.path,save.file)
 #' @param PAM.data a data.table or data.frame PAM-PAM data generated from [filter1.lowF] function.
-#' @param f2.fm the threshold of percentage change of Fm' between time2 and time1. Default value is 0.03, we recommend this argument can be adjusted from 0.01 to 0.05 by an interval of 0.01.
-#' @param f2.fmYII the threshold of ratio between percentage change of Fm' between time2 and time1 and of YII between time2 and time1. Default value is 3, we recommend this argument can be set as default value or adjusted between 2 and 5 by an interval of 1
+#' @param f2.fm the threshold of percentage change of Fm' between point2 and point1. Default value is 0.03, we recommend this argument can be adjusted from 0.01 to 0.05 by an interval of 0.01.
+#' @param f2.fmYII the threshold of ratio between percentage change of Fm' between point2 and point1 and of YII between point2 and point1. Default value is 3, we recommend this argument can be set as default value or adjusted between 2 and 5 by an interval of 1
 #' @param save.path local folder for saving your output file
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder
 
