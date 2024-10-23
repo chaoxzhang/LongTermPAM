@@ -64,6 +64,7 @@ scaleRateConstant<-function(diurnal.para){
 #' @import scales
 #' @importFrom patchwork plot_layout
 #' @importFrom cowplot ggdraw draw_label plot_grid
+#' @importFrom ggtext element_markdown
 #'
 #' @return [plotDiurnRateConstant] will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
 #' @export

@@ -62,7 +62,7 @@ scaleFvFm<-function(PAM.fvfm){
 #' @import scales
 #' @importFrom patchwork plot_layout
 #' @importFrom cowplot ggdraw draw_label plot_grid
-#'
+#' @importFrom ggtext element_markdown
 #' @return This function will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
 #' @export
 plotFvFm<-function(PAM.fvfm,plot.title,save.path,fieldnote,fieldnote.data){
