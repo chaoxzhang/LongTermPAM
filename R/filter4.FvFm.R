@@ -10,13 +10,13 @@ filter.FvFm.fc41<-function(data,f4.fm,f4.fmYII){
     subset(select=c('dateBack12h','datetime','YII'))%>%
     group_by(dateBack12h)%>%
     filter(YII==max(YII,na.rm = T))%>%
-    rename(FvFm=YII)
+    dplyr::rename(FvFm=YII)
   fm<-
     PAM.night%>%
     subset(select=c('dateBack12h','datetime','Fm_'))%>%
     group_by(dateBack12h)%>%
     filter(Fm_==max(Fm_,na.rm = T))%>%
-    rename(Fm=Fm_)
+    dplyr::rename(Fm=Fm_)
 
   #by merging fvfm and Fm, there will be many repeated dateback12h due to one to
   #several max FvFm or Fm.
@@ -26,7 +26,7 @@ filter.FvFm.fc41<-function(data,f4.fm,f4.fmYII){
     fvfm%>%
     merge(fm,by=c('dateBack12h'),all = T)%>%
     mutate(F0=Fm*(1-FvFm))%>%
-    rename(datetime.FvFm=datetime.x,datetime.Fm=datetime.y)
+    dplyr::rename(datetime.FvFm=datetime.x,datetime.Fm=datetime.y)
 
   Dfvfm<-
     fvfm%>%
@@ -45,7 +45,7 @@ filter.FvFm.fc41<-function(data,f4.fm,f4.fmYII){
         (DFm<=(-0.2)&DFvFm>=0)| #Fm decreases and fv/fm (maxYII) increases or didnot change or
         (DF0<=(-0.3)&DFvFm>=0)| # F0 decrease and fv/fm (maxYII) increases or didnot change or
         (Fm<=100&DFm/DFvFm>1.5&DFm<0)| #Fm<100 and Fm decreases and decreases in Fm were much higher then Fv/FM (maxYII)
-        (DFvFm>=0.4&DF0<0&DFm<DFvFm)| # Fv/Fm (maxYII) increases, and F0 decreases, and percentage increase in Fm
+        #(DFvFm>=0.4&DF0<0&DFm<DFvFm)| # Fv/Fm (maxYII) increases, and F0 decreases, and percentage increase in Fm
         # were lower than percentage increase in FvFm
         (DFvFm>=0.5&DFvFm/DF0>=2&  # Fv/Fm increases and increase in Fv/Fm were much higher than increase in F0 and Fm<200
            Fm<=200)
@@ -73,13 +73,13 @@ filter.FvFm.fc42<-function(data,f4.fm,f4.fmYII){
     subset(select=c('dateBack12h','datetime','YII'))%>%
     group_by(dateBack12h)%>%
     filter(YII==max(YII,na.rm = T))%>%
-    rename(FvFm=YII)
+    dplyr::rename(FvFm=YII)
   fm<-
     PAM.night%>%
     subset(select=c('dateBack12h','datetime','Fm_'))%>%
     group_by(dateBack12h)%>%
     filter(Fm_==max(Fm_,na.rm = T))%>%
-    rename(Fm=Fm_)
+    dplyr::rename(Fm=Fm_)
 
   #by merging fvfm and Fm, there will be many repeated dateback12h due to one to
   #several max FvFm or Fm.
@@ -89,7 +89,7 @@ filter.FvFm.fc42<-function(data,f4.fm,f4.fmYII){
     fvfm%>%
     merge(fm,by=c('dateBack12h'),all = T)%>%
     mutate(F0=Fm*(1-FvFm))%>%
-    rename(datetime.FvFm=datetime.x,datetime.Fm=datetime.y)
+    dplyr::rename(datetime.FvFm=datetime.x,datetime.Fm=datetime.y)
 
   Dfvfm<-
     fvfm%>%
