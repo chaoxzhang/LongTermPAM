@@ -1,7 +1,3 @@
-```         
-[![DOI](https://zenodo.org/badge/876022511.svg)](https://doi.org/10.5281/zenodo.14918625)
-```
-
 # LongTermPAM
 
 The LongTermPAM package provides a means to automatically identify and filter spurious observations in F', F~M~' and quantum yield of photosystem II (Y(II) or $\Phi$P) caused by such as snow and condensation in long-term Monitoring PAM measurements, and calculate different chlorophyll fluorescence (ChlF) parameters. Detailed instruction of this package can be found in Zhang et al., (2024)
