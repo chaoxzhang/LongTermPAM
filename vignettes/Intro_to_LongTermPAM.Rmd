@@ -341,7 +341,7 @@ plotCheckfilter(newdata=flag4.FvFm,rawdata=flag0,fieldnote=T,
 ```
 
 ```{r}
-# adjust f5.fm from 0.1 to 0.3 by a 0.05 interval
+# adjust f5.fm from 0.05 to 0.3 by a 0.05 interval
 # f5.fmYII = 3 usually is a good setting, you can just try to adjust f5.fm
 flag5.expand<-filter5.expand(flag4.FvFm,save.file = T,
                            save.path = save.filterData.path,

@@ -37,7 +37,7 @@ filter.expand.fc<-function(data,f5.fm,f5.fmYII){
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter4.FvFm] function.
 #' @param save.path local folder for saving your output file
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder
-#' @param f5.fm the threshold of percentage change of Fm' between point2 and point1. Default value is 0.2, we recommend this argument can be adjusted from 0.05 to 0.5 by an interval of 0.05.
+#' @param f5.fm the threshold of percentage change of Fm' between point2 and point1. Default value is 0.2, we recommend this argument can be adjusted from 0.05 to 0.3 by an interval of 0.05.
 #' @param f5.fmYII the threshold of ratio between percentage change of Fm' between point2 and point1 and of YII between point2 and point1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
 #'
 #' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
