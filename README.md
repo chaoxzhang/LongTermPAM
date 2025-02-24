@@ -1,4 +1,6 @@
-<https://zenodo.org/badge/876022511.svg>
+```         
+[![DOI](https://zenodo.org/badge/876022511.svg)](https://doi.org/10.5281/zenodo.14918625)
+```
 
 # LongTermPAM
 
