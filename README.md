@@ -1,24 +1,24 @@
 # LongTermPAM
 
-The LongTermPAM package provides a means to automatically identify and filter spurious observations in F', F~M~' and quantum yield of photosystem II (Y(II) or $\Phi$P) caused by such as snow and condensation in long-term Monitoring PAM measurements, and calculate different chlorophyll fluorescence (ChlF) parameters. Detailed instruction of this package can be found in Zhang et al., (2024)
+The LongTermPAM package provides a means to automatically identify and filter spurious observations in F', F~M~' and quantum yield of photosystem II (Y(II) or $\Phi$P) caused by such as snow and condensation in long-term Monitoring PAM measurements, and calculate different chlorophyll fluorescence (ChlF) parameters. Detailed instruction of this package can be found in Zhang et al., (2025, in submission)
 
 ## The workflow consists of three steps:
 
-1.  Read and prepare the data using **readPAM** and/or **correctF** function(s)
+1.  Read and prepare the data using `readPAM` and/or `correctF` function(s)
 
 2.  Filter and remove spurious data using filtering functions:
 
-    **filter1.lowF**, **filter2.night**, **filter3.day**, **filter4.FVFM**, **filter5.expand**, and **filter6.adjacent**
+    `filter1.lowF`, `filter2.night`, `filter3.day`, `filter4.FVFM`, `filter5.expand`, and `filter6.adjacent`
 
 3.  Calculate ChlF parameters using functions:
 
-    **ChlFRef**, **diurnalParams**, and **seasonalParams**.
+    `ChlFRef`, `diurnalParams`, and `seasonalParams`.
 
 ## Data visualization
 
 All data outputs from this package can be visualized using functions start with plot:
 
-**plotRawData**, **plotCheckfilter**, **plotFVFM**, **plotDiurnQuench**, **plotDiurnYield**, **plotSeasQuench**, and **plotSeasYield**.
+`plotRawData`, `plotCheckfilter`, `plotFVFM`, `plotDiurnQuench`, `plotDiurnYield`, `plotSeasQuench`, and `plotSeasYield`.
 
 ## Examples and instruction
 
