@@ -28,7 +28,7 @@ Users can download and use this introduction file directly to process their own 
 
 **All output data and figures can be accessed here:**
 
-<https://doi.org/10.5281/zenodo.14922468>
+[https://doi.org/10.5281/zenodo.1492246](https://doi.org/10.5281/zenodo.14922468){.uri}[8](https://doi.org/10.5281/zenodo.14922468)
 
 ## Reference:
 
