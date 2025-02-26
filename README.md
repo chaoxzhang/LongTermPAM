@@ -28,7 +28,7 @@ Users can download and use this introduction file directly to process their own 
 
 ## Cite this R package using:
 
-![](https://zenodo.org/badge/DOI/10.5281/zenodo.14918626.svg){alt="DOI"}
+![](https://zenodo.org/badge/DOI/10.5281/zenodo.14918626.svg)
 
 **All output data and figures can be accessed here:**
 
