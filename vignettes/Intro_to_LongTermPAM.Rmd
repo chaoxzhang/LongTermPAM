@@ -31,7 +31,7 @@ calculations, can be found in Zhang et al., (2025 in submission).
 
 ```{r}
 # Note: The # symbol is used for commenting, not for actual code execution. To run the following code, simply remove # at the beginning.
-#remotes::install_github("chaoxzhang/LongTermPAM")
+#remotes::install_github("chaoxzhang/LongTermPAM", build_vignettes = TRUE)
 ```
 
 # Example datasets
