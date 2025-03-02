@@ -4,7 +4,7 @@ The LongTermPAM package provides a means to automatically identify and filter sp
 
 ## Install LongTermPAM R package using:
 
-`{remotes::install_github("chaoxzhang/LongTermPAM", build_vignettes = TRU)}`
+`{remotes::install_github("chaoxzhang/LongTermPAM", build_vignettes = TRUE)}`
 
 ## The workflow consists of three steps:
 
