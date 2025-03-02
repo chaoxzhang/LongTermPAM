@@ -2,24 +2,24 @@
 % Please edit documentation in R/ChlFRef.R
 \name{ChlFRef}
 \alias{ChlFRef}
-\title{Retrieve FmR and FoR, and visualize Fm vs.Fv/Fm from raw and filtered data}
+\title{Retrieve FmR and F0R, and visualize Fm vs.Fv/Fm for data before and after filter}
 \usage{
-ChlFRef(raw.fvfm,filter.fvfm,save.file,save.path)
+ChlFRef(fvfm.beforeFilter,fvfm.afterFilter,save.file,save.path)
 }
 \arguments{
-\item{raw.fvfm}{MONI-PAM fvfm data retrieved from original data (i.e., flag0.fvfm in Intro_to_LongTermPAM.Rmd) by using \link{FindFvFm} function in this R package}
+\item{fvfm.beforeFilter}{MONI-PAM fvfm data retrieved before data filtering (i.e., flag0.fvfm in Intro_to_LongTermPAM.Rmd) by using \link{FindFVFM} function in this R package}
 
-\item{filter.fvfm}{the final MONI-PAM fvfm data retrieved from cleaning step 6 (i.e., flag6.fvfm in Intro_to_LongTermPAM.Rmd) by using \link{FindFvFm} function in this R package}
+\item{fvfm.afterFilter}{the final MONI-PAM fvfm data retrieved after data filtering (i.e., flag6.fvfm in Intro_to_LongTermPAM.Rmd) by using \link{FindFVFM} function in this R package}
 
-\item{FvFmR}{the maximum Fv/Fm value when there is no NPQ or NPQ is close to 0. For example, for Scots pine needles, Fv/FmR can be around 0.84.}
+\item{FvFmR}{the maximum Fv/Fm value when there is no NPQ or NPQ is close to 0. For example, for Scots pine needles, Fv/FmR can be around 0.83.}
 
 \item{save.file}{TRUE or FALSE. If TRUE, plotted figures and output data will be saved to local folder via save.path argument}
 
 \item{save.path}{local folder for saving the plotted figures and output data generated from this function}
 }
 \value{
-This function will return (1) a data frame including estimated FmR, FoR and the summary (R2, bias,RMSE,and RRMSE) of non-linear regression model simulation between Fm and Fv/Fm data from entire observation period, and (2) a corresponding figure.
+This function will return (1) a data frame including estimated FmR, F0R and the summary (R2, bias,RMSE,and RRMSE) of non-linear regression model simulation between Fm and Fv/Fm data from entire observation period, and (2) a corresponding figure.
 }
 \description{
-This function will estimate FmR and FoR, and visualize the scatter plot between Fm and Fv/Fm from both raw and filtered data. The purpose of this visualization is to validate MONIPAM data filter. To calculate other chlorophyll fluorescence parameters, we firstly need to know Fm reference (FmR) and Fo reference (FoR) when there is no NPQ or NPQ is near 0. In this case, Fv/Fm will be maximum value for whole observation period. For example, Scots pine needles usually have maximum Fv/Fm (FvFmR) around 0.84. Additionaly, Fv/Fm and Fm usually have a clear similar varying pattern. Therefore, We built a non-linear regression (exponential) model between Fm and Fv/Fm: Fm = a X exp (b x Fv/Fm) to estimate FmR based on FvFmR. You can define FvFmR value based on the species you measured.
+Reference fluorescence levels (FMR, F0R) are needed to estimate ChlF parameters. These are measured in the absence of NPQ and photoinhibition, with (FV/FM)R typically around 0.82–0.84 in summer. To estimate FMR and F0R, we first identify nightly maximum FV/FM and FM using \link{FindFVFM} function. If (FV/FM)R values fall within 0.82–0.84, they can be used directly; otherwise, a non-linear regression between FV/FM and FM, implemented in this funciton \link{ChlFRef}, estimates FMR at a user-defined (FV/FM)R (e.g., 0.83). F0R is then calculated as F0R = (1 - (FV/FM)R) * FMR. \link{ChlFRef} also assesses filtering quality via R² and RRMSE before and after filtering
 }

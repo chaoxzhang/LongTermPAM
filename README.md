@@ -2,6 +2,10 @@
 
 The LongTermPAM package provides a means to automatically identify and filter spurious observations in F', Fm' and quantum yield of photosystem II (Y(II) or ΦP) caused by such as snow and condensation in long-term Monitoring PAM measurements, and calculate different chlorophyll fluorescence (ChlF) parameters. Detailed instruction of this package can be found in Zhang et al., (2025, in submission).
 
+## Install LongTermPAM R package using:
+
+`{remotes::install_github("chaoxzhang/LongTermPAM")}`
+
 ## The workflow consists of three steps:
 
 1.  Read and prepare the data using `readPAM` and/or `correctF` function(s)
@@ -18,7 +22,7 @@ The LongTermPAM package provides a means to automatically identify and filter sp
 
 All data outputs from this package can be visualized using functions start with plot:
 
-`plotRawData`, `plotCheckfilter`, `plotFVFM`, `plotDiurnQuench`, `plotDiurnYield`, `plotSeasQuench`, and `plotSeasYield`.
+`plotPAM`, `plotCheckFilter`, `plotFVFM`, `plotDiurnQuench`, `plotDiurnYield`, `plotSeasonPara`.
 
 ## Examples and instruction
 

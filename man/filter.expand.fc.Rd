@@ -4,7 +4,7 @@
 \alias{filter.expand.fc}
 \title{filter logical function for filter5.expand}
 \usage{
-\method{filter}{expand.fc}(data, f5.fm, f5.fmYII)
+\method{filter}{expand.fc}(data, f5.Fm, f5.FmYII)
 }
 \description{
 filter logical function for filter5.expand

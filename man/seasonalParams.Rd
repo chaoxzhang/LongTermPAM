@@ -7,19 +7,19 @@
 seasonalParams(filtered.fvfm,FmR.data,save.file,save.path)
 }
 \arguments{
+\item{fvfm.afterFilter}{the final MONI-PAM fvfm data retrieved from cleaning step 6 (i.e., flag6.fvfm in Intro_to_processMONIPAM.Rmd) by using \link{FindFvFm} function in this R package}
+
+\item{FmR.data}{FmR and F0R data can be retrieved from the \link{ChlFRef} function or defined manually by the user.  This data should be a data frame or data table and include columns 'season','head_tree','head','tree_num','FmR' and 'F0R'}
+
 \item{save.file}{TRUE or FALSE. If TRUE, output data will be saved to local folder via save.path argument}
 
-\item{save.path}{local folder for saving the plotted figures generated from this function}
-
-\item{raw.fvfm}{MONI-PAM fvfm data retrieved from original data (i.e., flag0.fvfm in Intro_to_processMONIPAM.Rmd) by using \link{FindFvFm} function in this R package}
-
-\item{filter.fvfm}{the final MONI-PAM fvfm data retrieved from cleaning step 6 (i.e., flag6.fvfm in Intro_to_processMONIPAM.Rmd) by using \link{FindFvFm} function in this R package}
+\item{save.path}{local folder for saving the output data generated from this function}
 }
 \value{
 This function will return a data frame including new estimated seasonal parameters and Fv/Fm data
 }
 \description{
-This function will estimate seasonal parameters,including PQs, qLs, and NPQs. Please see calculation method and parameter description in Porcar-Castell et al. 2011 and Zhang et al. XX.
+This function estimates seasonal parameters,including quenching parameters PQs, qLs, and NPQs, and yield parameters Phi_NPQs and Phi_fDs. Please see calculation method and parameter description in Porcar-Castell et al. 2011 and Zhang et al. XX.
 }
 \references{
 reference Porcar‐Castell, A. (2011). A high‐resolution portrait of the annual dynamics of photochemical and non‐photochemical quenching in needles of Pinus sylvestris. Physiologia Plantarum, 143(2), 139-153. https://doi.org/10.1111/j.1399-3054.2011.01488.x

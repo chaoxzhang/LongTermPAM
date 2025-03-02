@@ -19,7 +19,7 @@ filter6.adjacent<-function(PAM.data,
                         save.file,
                         expand.time){
   start.time<-Sys.time()
-  print('This function will around 1 min.')
+  print('This function will run around 1 min.')
   PAM.data<-formatPAMdata(PAM.data = PAM.data)
   adjacent.filter<-
     ldply(levels(PAM.data$head_tree),function(i){
@@ -57,7 +57,7 @@ filter6.adjacent<-function(PAM.data,
   adjacent.filter[adjacent.filter$flag6.adjacent==0,c('F_','Fm_','YII')]<-NA
 
   adjacent.filter$flag.all<-
-    adjacent.filter$flag1.lowF.YII*adjacent.filter$flag2.night*
+    adjacent.filter$flag1.lowF*adjacent.filter$flag2.night*
     adjacent.filter$flag3.day*adjacent.filter$flag4.FvFm*
     adjacent.filter$flag5.expand*adjacent.filter$flag6.adjacent
 
@@ -70,7 +70,7 @@ filter6.adjacent<-function(PAM.data,
                                "sunset","dusk",
                                "dawn","F_","Fm_",
                                "YII", "par_PAM","temp_PAM","ETR",
-                               'head_tree',"flag1.lowF.YII",
+                               'head_tree',"flag1.lowF",
                                'flag2.night','flag3.day',
                                'flag4.FvFm',
                                'flag5.expand','flag6.adjacent','flag.all')])

@@ -1,10 +1,11 @@
 #' Estimate diurnal chlorophyll fluorescence parameters
 #'
-#' This function will estimate diurnal parameters,including rate constant parameters: PQ, NPQ,NPQr; quenching parameters: qLT,qLr, and quantum yield parameters: Phi_NPQ, Phi_NPQr,Phi_NPQs, Phi_fD. Please see calculation method and parameter description in Porcar-Castell et al. 2011 and Zhang et al. XX
+#' This function estimated diurnal parameters,including quenching parameters - PQ, qLT,NPQT, and NPQr, and yield parameters - Phi_NPQT, Phi_NPQr, and Phi_fD. Please see calculation method and parameter description in Porcar-Castell et al. 2011 and Zhang et al. XX
 #'
 #' @usage diurnalParams(filtered.data,FmR.data,save.file,save.path)
-#' @param filtered.data the final filtered MONI-PAM data retrieved from cleaning step 6  (i.e., flag6.neighbor in Intro_to_LongTermPAM.Rmd)
-#' @param FmR.data estimated chlorophyll fluorescence reference data, which can be retrieved from [ChlFRef] function in this R package, or prepared by yourself. This data should be a data frame or data table and include columns 'season','head_tree','head','tree_num','FmR' and 'FoR'
+#' @param filtered.data the final filtered MONI-PAM data retrieved from data filtering step 6  (i.e., flag6.adjacent in Intro_to_LongTermPAM.Rmd)
+#' @param filtered.fvfm the final FV/FM data retrieved from [FindFVFM] function using final filtered data in filter 6 (i.e., flag6.adjacent in Intro_to_LongTermPAM.Rmd). F0 and Fm are used here for ChlF paramters' calculation
+#' @param FmR.data FmR and F0R data can be retrieved from the [ChlFRef] function or defined manually by the user.  This data should be a data frame or data table and include columns 'season','head_tree','head','tree_num','FmR' and 'F0R'
 #' @param save.file TRUE or FALSE. If TRUE, output data will be saved to local folder via save.path argument
 #' @param save.path local folder for saving the output data generated from this function
 #'
@@ -31,8 +32,13 @@ diurnalParams<-function(filtered.data,
   #organize data structure
   FmR.data<-
     FmR.data %>%
-    dplyr::select(season,head_tree,head,tree_num,FmR,FoR) %>%
-    mutate(across(c(season,head,head_tree,tree_num),as.factor))
+    # only the FmR and F0R estimated from final filtered
+    # data will be used to calculate ChlF parameters
+    subset(var=='After filter') %>%
+    dplyr::select(season,head_tree,head,tree_num,FmR,F0R) %>%
+    mutate(across(c(season,head,head_tree,tree_num),as.factor)) %>%
+    droplevels()
+
 
   diurnal.all<-
     diurnal.data %>%
@@ -42,17 +48,14 @@ diurnalParams<-function(filtered.data,
   diurnal.all<-
     diurnal.all %>%
     mutate(
-      # calculate rate constant parameters
+      # calculate quenching parameters - PQ, qLT,NPQT, and NPQr
       PQ=FmR/F_-FmR/Fm_,
-      NPQ=FmR/Fm_-1,
+      qLT=(1/F_-1/Fm_)/(1/F0R-1/FmR),
+      NPQT=FmR/Fm_-1,
       NPQr=FmR/Fm_-FmR/Fm,
-      # calculate quenching parameters
-      qLT=(1/F_-1/Fm_)/(1/FoR-1/FmR),
-      qLr=(1/F_-1/Fm_)/(1/F0-1/Fm),
-      # calculate quantum yield parameters
-      Phi_NPQ=F_/Fm_-F_/FmR,
+      # calculate quantum yield parameters - Phi_NPQT, Phi_NPQr, and Phi_fD
+      Phi_NPQT=F_/Fm_-F_/FmR,
       Phi_NPQr=F_/Fm_-F_/Fm,
-      Phi_NPQs=F_/Fm-F_/FmR,
       Phi_fD=F_/FmR, #SAME TREND WITH F_, SINCE FMR IS CONSTANT
       #recalculate ETR
       ETR=0.84*par_PAM*YII*0.5
@@ -60,8 +63,9 @@ diurnalParams<-function(filtered.data,
     dplyr::select(season,plot.group, date,   dateBack12h,  datetime,  datetimeBack12h,
                   sunrise, sunriseEnd, solarNoon, sunsetStart, sunset, dusk, dawn,
                   head_tree, head, tree_num, flag.all,par_PAM, temp_PAM,
-                  F_, Fm_, YII, ETR,  F0, Fm, FvFm, FmR, FoR, PQ, NPQ, NPQr,
-                  qLT, qLr, Phi_NPQ, Phi_NPQr, Phi_NPQs, Phi_fD)
+                  F_, Fm_, YII, ETR,  F0, Fm, FvFm, FmR, F0R,
+                  PQ, qLT, NPQT, NPQr,
+                  Phi_NPQT, Phi_NPQr, Phi_fD)
 
   if (save.file==T){
     write.table(diurnal.all,row.names = F,sep=';',

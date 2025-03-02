@@ -48,10 +48,10 @@ scaleFvFm<-function(PAM.fvfm){
 
 #' MONI-PAM FV/FM data visualization
 #'
-#' This function will visualize MONI-PAM FV/FM data including F0,FM,FV/FM,PAR, and temperature in one figure each head.
+#' This function will visualize MONI-PAM FV/FM data including F0,FM,FV/FM,PAR, and temperature in one figure for each head.
 #'
-#' @usage plotFvFm(PAM.fvfm,plot.title,save.path)
-#' @param PAM.fvfm MONI-PAM fvfm data retrieved from FindFvFm function in this R package
+#' @usage plotFVFM(PAM.fvfm,plot.title,save.path)
+#' @param PAM.fvfm MONI-PAM FV/FM data retrieved from [FindFVFM] function in this R package
 #' @param plot.title any text to describe clearly about your figure content
 #' @param save.path local folder for saving the plotted figures generated from this function
 #'
@@ -63,17 +63,13 @@ scaleFvFm<-function(PAM.fvfm){
 #' @importFrom patchwork plot_layout
 #' @importFrom cowplot ggdraw draw_label plot_grid
 #' @importFrom ggtext element_markdown
-#' @return This function will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
+#' @return This function will not return/show the plotted figures in the end, instead, it will save the plotted figures to your local folder directly.
 #' @export
-plotFvFm<-function(PAM.fvfm,plot.title,save.path,fieldnote,fieldnote.data){
+plotFVFM<-function(PAM.fvfm,plot.title,save.path){
 
   start.time<-Sys.time()
   PAM.fvfm<-formatPAMdata(PAM.data=PAM.fvfm)
 
-  if (isTRUE(fieldnote==TRUE)){
-    fieldnote.data=fieldnote.data
-    fieldnote.data$date<-ymd(fieldnote.data$date,truncated = 3)
-  }
   extreme.data<-scaleFvFm(PAM.fvfm)
 
   plot.onetree<-
@@ -109,7 +105,7 @@ plotFvFm<-function(PAM.fvfm,plot.title,save.path,fieldnote,fieldnote.data){
                                   range(na.omit(PAM.fvfm$date))[2]))+
           scale_y_continuous(
             sec.axis = sec_axis(~(.-scale.data$scale.Fm.b)/scale.data$scale.Fm.a,
-                                name="Fm"),
+                                name=expression(paste('F'[M]))),
             name = bquote(atop(paste('F'[V],'/','F'[M]),
                                paste(.(j)))))+
           theme_bw()+
@@ -118,34 +114,13 @@ plotFvFm<-function(PAM.fvfm,plot.title,save.path,fieldnote,fieldnote.data){
                 axis.text.y.left = element_text(size = 15,color = 'forestgreen'),
                 axis.text.y.right = element_text(size = 15,color = 'black'),
                 axis.text.x =  element_text(size = 12,color = 'black'),
-                axis.title.y.right  = element_markdown(size = 16,vjust = -0.5),
+                axis.title.y.right  = element_text(size = 16,vjust = -0.5),
                 axis.title.y.left = element_text(size = 14.5,color = 'forestgreen'),
                 axis.title.x =element_blank(),
                 axis.ticks.y.left =element_line(color = 'forestgreen'),
                 axis.line.y.left = element_line(color = 'forestgreen'),
                 plot.margin = unit(c(0,0,0,0),'cm'))
-        if (isTRUE(fieldnote==T)){
 
-          fieldnote.group<-
-            fieldnote.data %>%
-            subset(head_tree==j,select = c('date','head_tree','remark.plot')) %>%
-            subset(remark.plot!='endSeason') %>%
-            na.omit() %>% droplevels()
-
-          if (isTRUE(length(na.omit(fieldnote.group$remark.plot))>0)) {# when there is fieldnote for this observation season
-            p1<-p1+
-              geom_point(data=fieldnote.group,
-                         aes(x=date,y=max(plot.data$FvFm,na.rm = T)-0.05),
-                         color='red',size=3,na.rm = T)+
-              geom_text(data=fieldnote.group,
-                        aes(x=date,y=max(plot.data$FvFm,na.rm = T),
-                            label=remark.plot),color='red',size=3,na.rm = T)
-          } else {
-            p1<-p1
-          }
-        } else {
-          p1<-p1
-        }
         # Function to create plots 2, 3, and 4 (2nd, 3rd, and 4th right y axis)
         p234.fc<-function(p234.color){
           ggplot(plot.data,aes(x=date))+
@@ -175,7 +150,7 @@ plotFvFm<-function(PAM.fvfm,plot.title,save.path,fieldnote,fieldnote.data){
         p2<-p234.fc('orange')+
           scale_y_continuous(
             sec.axis = sec_axis(~(.-scale.data$scale.F0.b)/scale.data$scale.F0.a,
-                                name=expression(paste('F0'))))
+                                name=expression(paste('F'[0]))))
         p3<-p234.fc('darkorchid')+
           scale_y_continuous(
             sec.axis = sec_axis(~(.-scale.data$scale.temp.b)/scale.data$scale.temp.a,

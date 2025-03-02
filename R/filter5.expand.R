@@ -1,6 +1,6 @@
 #' filter logical function for filter5.expand
 #' @export
-filter.expand.fc<-function(data,f5.fm,f5.fmYII){
+filter.expand.fc<-function(data,f5.Fm,f5.FmYII){
   data=data[
     data$flag5.expand==1,c('date','datetime','F_','Fm_','YII','flag5.expand')]
   data<-data[order(data$datetime),]
@@ -15,12 +15,12 @@ filter.expand.fc<-function(data,f5.fm,f5.fmYII){
   ##   filter functions 1 to 4
   data.filter<-data.filter[data.filter$dif.ID>=3,]
 
-  if (f5.fm>=0&
-      f5.fmYII>0){
+  if (f5.Fm>=0&
+      f5.FmYII>0){
     data.filter$flag5.expand[
-      (data.filter$vary.YII>=0&data.filter$vary.Fm<=(-1*f5.fm))|
-        (data.filter$vary.Fm<=(-1*f5.fm)&
-           data.filter$vary.Fm/data.filter$vary.YII>=f5.fmYII)]<-0
+      (data.filter$vary.YII>=0&data.filter$vary.Fm<=(-1*f5.Fm))|
+        (data.filter$vary.Fm<=(-1*f5.Fm)&
+           data.filter$vary.Fm/data.filter$vary.YII>=f5.FmYII)]<-0
   }
 
 
@@ -29,16 +29,16 @@ filter.expand.fc<-function(data,f5.fm,f5.fmYII){
   return(data)
 }
 
-#' Filter MONI-PAM data step 5,remove additionally abnormal low Fm’ data that is or are adjacent to previously filtered data
+#' Filter MONI-PAM data step 5,remove undetected F', Fm', and Y(II) points from previous functions
 #'
 #' Details see Zhang et al.,202X. paper link url.
 #'
-#' @usage filter5.expand(PAM.data,save.path,save.file,f5.fm=0.2,f5.fmYII=3)
-#' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter4.FvFm] function.
+#' @usage filter5.expand(PAM.data,save.path,save.file,f5.Fm=0.2,f5.FmYII=3)
+#' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter4.FVFM] function.
 #' @param save.path local folder for saving your output file
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder
-#' @param f5.fm the threshold of percentage change of Fm' between point2 and point1. Default value is 0.2, we recommend this argument can be adjusted from 0.05 to 0.3 by an interval of 0.05.
-#' @param f5.fmYII the threshold of ratio between percentage change of Fm' between point2 and point1 and of YII between point2 and point1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
+#' @param f5.Fm the threshold of percentage change of Fm' between consecutive points. Default value is 0.2, we recommend this argument can be adjusted from 0.05 to 0.3 by an interval of 0.05.
+#' @param f5.FmYII the threshold of ratio between percentage change in Fm' between consecutive points and in Y(II) between consecutive points. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
 #'
 #' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
 #' @importFrom plyr ldply
@@ -49,10 +49,10 @@ filter.expand.fc<-function(data,f5.fm,f5.fmYII){
 filter5.expand<-function(PAM.data,
                         save.path,
                         save.file,
-                        f5.fm=0.2,
-                        f5.fmYII=3){
+                        f5.Fm=0.2,
+                        f5.FmYII=3){
   start.time<-Sys.time()
-  print('This function will run mins')
+  print('This function will run around 1 min')
   PAM.data<-formatPAMdata(PAM.data = PAM.data)
   expand.filter<-
     ldply(levels(PAM.data$head_tree),function(i){
@@ -71,12 +71,12 @@ filter5.expand<-function(PAM.data,
         PAM.onetree$flag5.expand<-1
 
         filter.onetree<-
-          filter.expand.fc(data=PAM.onetree,f5.fm=f5.fm,f5.fmYII=f5.fmYII)
+          filter.expand.fc(data=PAM.onetree,f5.Fm=f5.Fm,f5.FmYII=f5.FmYII)
         trials <- 0
         print(paste0(i, ' is filtering...'))
         while(nrow(filter.onetree[filter.onetree$flag5.expand==0,])>0){
           filter.onetree<-
-            filter.expand.fc(data=filter.onetree,f5.fm=f5.fm,f5.fmYII=f5.fmYII)
+            filter.expand.fc(data=filter.onetree,f5.Fm=f5.Fm,f5.FmYII=f5.FmYII)
           trials <- trials +1
         }
 
@@ -94,7 +94,7 @@ filter5.expand<-function(PAM.data,
   expand.filter[expand.filter$flag5.expand==0,c('F_','Fm_','YII')]<-NA
 
   expand.filter$flag.all<-
-    expand.filter$flag1.lowF.YII*expand.filter$flag2.night*
+    expand.filter$flag1.lowF*expand.filter$flag2.night*
     expand.filter$flag3.day*expand.filter$flag4.FvFm*expand.filter$flag5.expand
 
 
@@ -106,7 +106,7 @@ filter5.expand<-function(PAM.data,
                                "sunset","dusk",
                                "dawn","F_","Fm_",
                                "YII", "par_PAM","temp_PAM","ETR",
-                               'head_tree',"flag1.lowF.YII",
+                               'head_tree',"flag1.lowF",
                                'flag2.night','flag3.day',
                                'flag4.FvFm',
                                'flag5.expand','flag.all')])

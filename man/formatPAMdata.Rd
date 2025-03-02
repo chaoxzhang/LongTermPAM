@@ -2,16 +2,16 @@
 % Please edit documentation in R/formatPAMdata.R
 \name{formatPAMdata}
 \alias{formatPAMdata}
-\title{convert MONI-PAM data variables to correct data format}
+\title{convert MONI-PAM data variables to the correct data format and fill any date or time gaps}
 \usage{
 formatPAMdata(PAM.data)
 }
 \arguments{
-\item{PAM.data}{a combined organized MONI-PAM data which is generated from \link{readPAM} function, or a MONI-PAM data after data filtering which is generated from filter function in this package such as \link{filter1.lowF}, \link{filter2.night} and so on.}
+\item{PAM.data}{The data can be (1) a combined and organized MONI-PAM dataset generated from the \link{readPAM} function or after applying \link{correctF} function, (2) a MONI-PAM dataset after data filtering, generated using filtering functions in this package, such as \link{filter1.NA}, \link{filter2.night} and so on, (3) an FV/FM dataset generated from the \link{FindFVFM} function, (4) a diurnal parameter dataset generated from the \link{diurnalParams} function, or (5) a seasonal parameter dataset generated from the \link{seasonalParams} function.}
 }
 \value{
-\link{formatPAMdata} will generate a MONI-PAM data with all the variables in proper data format for later data filtering and processing
+\link{formatPAMdata} will generate a MONI-PAM data with all the variables in proper data format for later data filtering, processing and visualization
 }
 \description{
-This function will convert the MONI-PAM variables to proper data format for easily used for data filtering and processing
+This function converts MONI-PAM variables to the proper data format and fill any date or time gaps to facilitate data filtering, processing, and visualization.
 }

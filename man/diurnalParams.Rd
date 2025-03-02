@@ -7,9 +7,11 @@
 diurnalParams(filtered.data,FmR.data,save.file,save.path)
 }
 \arguments{
-\item{filtered.data}{the final filtered MONI-PAM data retrieved from cleaning step 6  (i.e., flag6.neighbor in Intro_to_LongTermPAM.Rmd)}
+\item{filtered.data}{the final filtered MONI-PAM data retrieved from data filtering step 6  (i.e., flag6.adjacent in Intro_to_LongTermPAM.Rmd)}
 
-\item{FmR.data}{estimated chlorophyll fluorescence reference data, which can be retrieved from \link{ChlFRef} function in this R package, or prepared by yourself. This data should be a data frame or data table and include columns 'season','head_tree','head','tree_num','FmR' and 'FoR'}
+\item{filtered.fvfm}{the final FV/FM data retrieved from \link{FindFVFM} function using final filtered data in filter 6 (i.e., flag6.adjacent in Intro_to_LongTermPAM.Rmd). F0 and Fm are used here for ChlF paramters' calculation}
+
+\item{FmR.data}{FmR and F0R data can be retrieved from the \link{ChlFRef} function or defined manually by the user.  This data should be a data frame or data table and include columns 'season','head_tree','head','tree_num','FmR' and 'F0R'}
 
 \item{save.file}{TRUE or FALSE. If TRUE, output data will be saved to local folder via save.path argument}
 
@@ -19,7 +21,7 @@ diurnalParams(filtered.data,FmR.data,save.file,save.path)
 This function will return a data frame including estimated diurnal parameters and original data
 }
 \description{
-This function will estimate diurnal parameters,including rate constant parameters: PQ, NPQ,NPQr; quenching parameters: qLT,qLr, and quantum yield parameters: Phi_NPQ, Phi_NPQr,Phi_NPQs, Phi_fD. Please see calculation method and parameter description in Porcar-Castell et al. 2011 and Zhang et al. XX
+This function estimated diurnal parameters,including quenching parameters - PQ, qLT,NPQT, and NPQr, and yield parameters - Phi_NPQT, Phi_NPQr, and Phi_fD. Please see calculation method and parameter description in Porcar-Castell et al. 2011 and Zhang et al. XX
 }
 \references{
 reference Porcar‐Castell, A. (2011). A high‐resolution portrait of the annual dynamics of photochemical and non‐photochemical quenching in needles of Pinus sylvestris. Physiologia Plantarum, 143(2), 139-153. https://doi.org/10.1111/j.1399-3054.2011.01488.x

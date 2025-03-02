@@ -2,18 +2,18 @@
 % Please edit documentation in R/filter3.day.R
 \name{filter3.day}
 \alias{filter3.day}
-\title{Filter MONI-PAM data step 3,remove abnormal F', Fm' and YII value during the day}
+\title{Filter MONI-PAM data step 3,remove spurious F', Fm' and Y(II) value during the day}
 \usage{
-filter3.day(PAM.data,f3.YII=0.02,f3.fm=0.1,f3.fmYII=3,save.path,save.file)
+filter3.day(PAM.data,f3.YII=0.02,f3.Fm=0.1,f3.FmYII=3,save.path,save.file)
 }
 \arguments{
 \item{PAM.data}{a data.table or data.frame MONI-PAM data generated from \link{filter2.night} function.}
 
-\item{f3.YII}{the threshold of percentage change of YII between time2 and time1. Default value is 0.02, we recommend this argument can be adjusted from 0.01 to 0.05 by an interval of 0.01.}
+\item{f3.YII}{the threshold of percentage change of YII between consecutive points. Default value is 0.02, we recommend this argument can be adjusted from 0.01 to 0.1 by an interval of 0.01.}
 
-\item{f3.fm}{the threshold of percentage change of Fm' between time2 and time1. Default value is 0.1, we recommend this argument can be adjusted from 0.01 to 0.2 by an interval of 0.05.}
+\item{f3.Fm}{the threshold of percentage change of Fm' between consecutive points. Default value is 0.1, we recommend this argument can be adjusted from 0.05 to 0.3 by a 0.05 interval by an interval of 0.05.}
 
-\item{f3.fmYII}{the threshold of ratio between percentage change of Fm' between time2 and time1 and of YII between time2 and time1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.}
+\item{f3.FmYII}{the threshold of ratio between percentage change in Fm' between consecutive points and in Y(II) between consecutive points. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.}
 
 \item{save.path}{local folder for saving your output file}
 

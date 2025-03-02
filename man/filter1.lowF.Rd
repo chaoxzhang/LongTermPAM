@@ -2,20 +2,20 @@
 % Please edit documentation in R/filter1.lowF.R
 \name{filter1.lowF}
 \alias{filter1.lowF}
-\title{Filter MONI-PAM data step 1,remove unrecorded or abnormal low F' and Fm' value}
+\title{Filter MONI-PAM data step 1,remove spurious low F' and Fm' values}
 \usage{
 filter1.lowF(PAM.data,save.path,save.file)
 }
 \arguments{
-\item{PAM.data}{a combined organized MONI-PAM data which is generated from \link{readPAM} function.}
+\item{PAM.data}{a combined and organized MONI-PAM data which is generated from \link{readPAM} function.}
 
 \item{save.path}{local folder for saving your output file}
 
 \item{save.file}{If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder}
 }
 \value{
-This function will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter1NA.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season. This output file will contain two new column named as 'flag1.lowF.YII' and 'flag.all'. These two columns only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset. 'flag1.lowF.YII' is used to mark which data is/are abnormal data from the data filtering function. 'flag.all' is used to mark all the abnormal data from the all data filtering function.
+This function will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter1NA.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season. This output file will contain two new column named as 'flag1.lowF' and 'flag.all'. These two columns only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset. 'flag1.lowF' is used to mark which data is/are abnormal data from the data filtering function. 'flag.all' is used to mark all the abnormal data from the all data filtering function.
 }
 \description{
-Details see Zhang et al.,202X. paper link url.
+Details see Zhang et al.,2025, in submission.
 }

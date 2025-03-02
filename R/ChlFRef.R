@@ -1,11 +1,11 @@
-#' Retrieve FmR and FoR, and visualize Fm vs.Fv/Fm from raw and filtered data
+#' Retrieve FmR and F0R, and visualize Fm vs.Fv/Fm for data before and after filter
 #'
-#' This function will estimate FmR and FoR, and visualize the scatter plot between Fm and Fv/Fm from both raw and filtered data. The purpose of this visualization is to validate MONIPAM data filter. To calculate other chlorophyll fluorescence parameters, we firstly need to know Fm reference (FmR) and Fo reference (FoR) when there is no NPQ or NPQ is near 0. In this case, Fv/Fm will be maximum value for whole observation period. For example, Scots pine needles usually have maximum Fv/Fm (FvFmR) around 0.84. Additionaly, Fv/Fm and Fm usually have a clear similar varying pattern. Therefore, We built a non-linear regression (exponential) model between Fm and Fv/Fm: Fm = a X exp (b x Fv/Fm) to estimate FmR based on FvFmR. You can define FvFmR value based on the species you measured.
+#'Reference fluorescence levels (FMR, F0R) are needed to estimate ChlF parameters. These are measured in the absence of NPQ and photoinhibition, with (FV/FM)R typically around 0.82–0.84 in summer. To estimate FMR and F0R, we first identify nightly maximum FV/FM and FM using [FindFVFM] function. If (FV/FM)R values fall within 0.82–0.84, they can be used directly; otherwise, a non-linear regression between FV/FM and FM, implemented in this funciton [ChlFRef], estimates FMR at a user-defined (FV/FM)R (e.g., 0.83). F0R is then calculated as F0R = (1 - (FV/FM)R) * FMR. [ChlFRef] also assesses filtering quality via R² and RRMSE before and after filtering
 #'
-#' @usage ChlFRef(raw.fvfm,filter.fvfm,save.file,save.path)
-#' @param raw.fvfm MONI-PAM fvfm data retrieved from original data (i.e., flag0.fvfm in Intro_to_LongTermPAM.Rmd) by using [FindFvFm] function in this R package
-#' @param filter.fvfm the final MONI-PAM fvfm data retrieved from cleaning step 6 (i.e., flag6.fvfm in Intro_to_LongTermPAM.Rmd) by using [FindFvFm] function in this R package
-#' @param FvFmR the maximum Fv/Fm value when there is no NPQ or NPQ is close to 0. For example, for Scots pine needles, Fv/FmR can be around 0.84.
+#' @usage ChlFRef(fvfm.beforeFilter,fvfm.afterFilter,save.file,save.path)
+#' @param fvfm.beforeFilter MONI-PAM fvfm data retrieved before data filtering (i.e., flag0.fvfm in Intro_to_LongTermPAM.Rmd) by using [FindFVFM] function in this R package
+#' @param fvfm.afterFilter the final MONI-PAM fvfm data retrieved after data filtering (i.e., flag6.fvfm in Intro_to_LongTermPAM.Rmd) by using [FindFVFM] function in this R package
+#' @param FvFmR the maximum Fv/Fm value when there is no NPQ or NPQ is close to 0. For example, for Scots pine needles, Fv/FmR can be around 0.83.
 #' @param save.file TRUE or FALSE. If TRUE, plotted figures and output data will be saved to local folder via save.path argument
 #' @param save.path local folder for saving the plotted figures and output data generated from this function
 #' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
@@ -14,29 +14,29 @@
 #' @import ggplot2
 #' @import scales
 #' @importFrom cowplot plot_grid
-#' @return This function will return (1) a data frame including estimated FmR, FoR and the summary (R2, bias,RMSE,and RRMSE) of non-linear regression model simulation between Fm and Fv/Fm data from entire observation period, and (2) a corresponding figure.
+#' @return This function will return (1) a data frame including estimated FmR, F0R and the summary (R2, bias,RMSE,and RRMSE) of non-linear regression model simulation between Fm and Fv/Fm data from entire observation period, and (2) a corresponding figure.
 #' @export
-ChlFRef<-function(raw.fvfm,
-                  filter.fvfm,
+ChlFRef<-function(fvfm.beforeFilter,
+                  fvfm.afterFilter,
                   FvFmR,
                   save.file,
                   save.path){
 
-  filter.fvfm<-
-    filter.fvfm %>%
+  fvfm.afterFilter<-
+    fvfm.afterFilter %>%
     mutate(date=as.Date(date),
            head_tree=as.factor(head_tree)) %>%
     mutate(season=paste0(range(lubridate::year(date))[1],'_',
                          range(lubridate::year(date))[2]),
-           var='Filtered data')
+           var='Before filter')
 
-  raw.fvfm<-
-    raw.fvfm %>%
+  fvfm.beforeFilter<-
+    fvfm.beforeFilter %>%
     mutate(date=as.Date(date),
            head_tree=as.factor(head_tree)) %>%
     mutate(season=paste0(range(lubridate::year(date))[1],'_',
                          range(lubridate::year(date))[2]),
-           var='Raw data')
+           var='After filter')
 
   FmR.fc<-function(data){
 
@@ -96,7 +96,7 @@ ChlFRef<-function(raw.fvfm,
             onetree %>% select('var','season','head_tree','head','tree_num') %>% unique(),
             FvFmR=FvFmR,
             FmR=FmR,
-            FoR=(1-FvFmR)*FmR,# FoR=(1-FvFmR)*FmR
+            F0R=(1-FvFmR)*FmR,# F0R=(1-FvFmR)*FmR
             R2= 1-(SS_res/SS_tot),   #calculate R2
             N=nrow(onetree), # number of points used in the regression model
             RMSE=RMSE,# RMSE
@@ -106,7 +106,7 @@ ChlFRef<-function(raw.fvfm,
           mutate(RMSE=round(RMSE,digits = 2)) %>%
           mutate(RRMSE=round(RRMSE,digits = 2)) %>%
           mutate(FmR=round(FmR,digits = 0)) %>%
-          mutate(FoR=round(FoR,digits = 0))
+          mutate(F0R=round(F0R,digits = 0))
 
         custom_labels <- function(x) {
           ifelse(x == FvFmR, paste0("<span style='color:red;'>", x, "</span>"), x)
@@ -135,7 +135,7 @@ ChlFRef<-function(raw.fvfm,
           geom_text(data = FR, color='red',hjust=2.3,vjust=7,size=4,
                     mapping=aes(x=Inf,y=Inf,label=paste0('FmR','=',FmR)))+
           geom_text(data = FR, color='red',hjust=2.6,vjust=9,size=4,
-                    mapping=aes(x=Inf,y=Inf,label=paste0('FoR','=',FoR)))+
+                    mapping=aes(x=Inf,y=Inf,label=paste0('F0R','=',F0R)))+
           theme_bw()+
           theme(axis.text.y = element_text(color='black',size=11),
                 axis.text.x = element_markdown(color='black',size=11),
@@ -147,35 +147,35 @@ ChlFRef<-function(raw.fvfm,
       })
     }
 
-  # calculate fluorescence reference and plot the results for both raw  and filtered data
-  FmR.res.raw<-FmR.fc(raw.fvfm);FmR.res.filter<-FmR.fc(filter.fvfm)
+  # calculate fluorescence reference and plot the results for both data before and after filtering
+  FmR.res.raw<-FmR.fc(fvfm.beforeFilter);FmR.res.filter<-FmR.fc(fvfm.afterFilter)
   # combine results data into one data file
   FmR.res<-rbind(ldply(1:length(FmR.res.raw),function(i){FmR.res.raw[[i]][[1]]}),
                  ldply(1:length(FmR.res.filter),function(i){FmR.res.filter[[i]][[1]]}))
-  # retrieve plotted result figure list for both raw and filtered data
+  # retrieve plotted result figure list for both data before and after filtering
   fig.raw.list<-lapply(1:length(FmR.res.raw),function(i){FmR.res.raw[[i]][[2]]})
   fig.filter.list<-lapply(1:length(FmR.res.filter),function(i){FmR.res.filter[[i]][[2]]})
 
-  # combine figure list into one for raw data
+  # combine figure list into one for data before filtering
   fig.raw<-do.call(plot_grid, c(fig.raw.list, nrow = 1,align='hv',
-                                labels='raw data',label_size=16,label_x=-0.1,label_y=1.02))
-  # combine figure list into one for filtered data
+                                labels='Before filter',label_size=16,label_x=-0.1,label_y=1.02))
+  # combine figure list into one for data after filtering
   fig.filter<-do.call(plot_grid, c(fig.filter.list, nrow = 1,align='hv',
-                                   labels='filtered data',label_size=16,label_x=-0.15,label_y=1.02))
-  # combined figures from raw data and filtered data into one
+                                   labels='After filter',label_size=16,label_x=-0.05,label_y=1.02))
+  # combined figures from data before and after filtering into one
   fig.all<-plot_grid(fig.raw,fig.filter,align = 'hv',ncol = 1)
   print(fig.all)
 
   if (save.file==T){
 
     ggsave(fig.all,compression='lzw',dpi=200,
-            height=6,width = 4*length(levels(filter.fvfm$head_tree)),
+            height=6,width = 4*length(levels(fvfm.afterFilter$head_tree)),
             filename = paste0(save.path,'/',unique(FmR.res$season),
-                              '_','FmR_FoR','.tiff'))
+                              '_','FmR_F0R','.tiff'))
 
     write.table(FmR.res,row.names = F,sep=';',
                 file=paste0(save.path,'/',unique(FmR.res$season),
-                            '_','FmR_FoR','.csv'))
+                            '_','FmR_F0R','.csv'))
   }
   return(FmR.res)
 }

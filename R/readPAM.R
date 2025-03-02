@@ -307,7 +307,7 @@ readPAM<-function(source.path,#folder where files stored
     ldply(1:nrow(range.date),function(i){
 
       range.i<-range.date[i,]
-      time=seq(ymd_hms(paste(lubridate::date(range.i$start.date),
+      Time=seq(ymd_hms(paste(lubridate::date(range.i$start.date),
                              lubridate::hour(range.i$start.date),':00:00')),
                ymd_hms(paste(lubridate::date(range.i$end.date),
                              lubridate::hour(range.i$end.date),':00:00')),
@@ -336,7 +336,7 @@ readPAM<-function(source.path,#folder where files stored
                                      lubridate::hour(fill.data$datetime),':00:00'))
       #complete from tidyr package
       fill.dategap<-
-        complete(fill.data,ymdh=time,nesting(head,tree_num))
+        complete(fill.data,ymdh=Time,nesting(head,tree_num))
       #fill empty date column
       fill.dategap$date[is.na(fill.dategap$date)]<-
         lubridate::date(fill.dategap$ymdh[is.na(fill.dategap$date)])

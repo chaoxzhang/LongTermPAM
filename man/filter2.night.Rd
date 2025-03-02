@@ -2,16 +2,16 @@
 % Please edit documentation in R/filter2.night.R
 \name{filter2.night}
 \alias{filter2.night}
-\title{Filter PAM-PAM data step 2,remove abnormal F', Fm' and YII value from the night}
+\title{Filter PAM-PAM data step 2,remove spurious F', Fm' and Y(II) value from the night}
 \usage{
-filter2.night(PAM.data,f2.fm=0.03,f2.fmYII=3,save.path,save.file)
+filter2.night(PAM.data,f2.Fm=0.03,f2.FmYII=3,save.path,save.file)
 }
 \arguments{
 \item{PAM.data}{a data.table or data.frame PAM-PAM data generated from \link{filter1.lowF} function.}
 
-\item{f2.fm}{the threshold of percentage change of Fm' between time2 and time1. Default value is 0.03, we recommend this argument can be adjusted from 0.01 to 0.05 by an interval of 0.01.}
+\item{f2.Fm}{the threshold of percentage change of Fm' between consecutive points. Default value is 0.03, we recommend this argument can be adjusted from 0.01 to 0.1 by an interval of 0.01.}
 
-\item{f2.fmYII}{the threshold of ratio between percentage change of Fm' between time2 and time1 and of YII between time2 and time1. Default value is 3, we recommend this argument can be set as default value or adjusted between 2 and 5 by an interval of 1}
+\item{f2.FmYII}{the threshold of ratio between percentage change in Fm' between consecutive points and in Y(II) between consecutive points. Default value is 3, we recommend this argument can be set as default value or adjusted between 2 and 5 by an interval of 1}
 
 \item{save.path}{local folder for saving your output file}
 

@@ -4,7 +4,7 @@
 \alias{filter.night.fc}
 \title{filter logic function for filter2.night function}
 \usage{
-\method{filter}{night.fc}(data, period, f2.fm, f2.fmYII)
+\method{filter}{night.fc}(data, period, f2.Fm, f2.FmYII)
 }
 \description{
 filter logic function for filter2.night function

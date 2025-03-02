@@ -1,7 +1,7 @@
 
 #' filter logical function 1 for filter3.day function
 #' @export
-filter.o.fc<-function(data,f3.fm,f3.fmYII){
+filter.o.fc<-function(data,f3.Fm,f3.FmYII){
 
   data<-
     data %>%
@@ -95,15 +95,15 @@ filter.o.fc<-function(data,f3.fm,f3.fmYII){
           ##>> impossible case
           ##>> 1. YII increases then decreases, Fm' and F' decreases
           ##>>    than increases a lot
-          if (isTRUE(f3.fm>=0&f3.fmYII>=1)){
+          if (isTRUE(f3.Fm>=0&f3.FmYII>=1)){
 
             data.select$flag3.day[
               (data.select$vary.YII>=0&
-                 data.select$vary.Fm<=(-1*f3.fm))|
+                 data.select$vary.Fm<=(-1*f3.Fm))|
                 (data.select$vary.YII<=0&
-                   data.select$vary.Fm>=f3.fm)|
-                (data.select$vary.Fm<=(-1*f3.fm)&
-                   data.select$vary.Fm/data.select$vary.YII>=f3.fmYII)]<-0
+                   data.select$vary.Fm>=f3.Fm)|
+                (data.select$vary.Fm<=(-1*f3.Fm)&
+                   data.select$vary.Fm/data.select$vary.YII>=f3.FmYII)]<-0
           }
           data.select2<-data.select
           # repeat for all the data until all the abnormal points were found
@@ -120,11 +120,11 @@ filter.o.fc<-function(data,f3.fm,f3.fmYII){
               c(NA,diff(data.select2$F_))/data.select2$F_
             data.select2$flag3.day[
               (data.select2$vary.YII>=0&
-                 data.select2$vary.Fm<=(-1*f3.fm))|
+                 data.select2$vary.Fm<=(-1*f3.Fm))|
                 (data.select2$vary.YII<=0&
-                   data.select2$vary.Fm>=f3.fm)|
-                (data.select2$vary.Fm<=(-1*f3.fm)&
-                   data.select2$vary.Fm/data.select2$vary.YII>=f3.fmYII)
+                   data.select2$vary.Fm>=f3.Fm)|
+                (data.select2$vary.Fm<=(-1*f3.Fm)&
+                   data.select2$vary.Fm/data.select2$vary.YII>=f3.FmYII)
             ]<-0
             trials <- trials +1
           }
@@ -143,7 +143,7 @@ filter.o.fc<-function(data,f3.fm,f3.fmYII){
 }
 #' filter logical function 2 for filter3.day function
 #' @export
-filter.pm.fc<-function(data,f3.YII,f3.fm){
+filter.pm.fc<-function(data,f3.YII,f3.Fm){
 
   data<-
     data %>%
@@ -164,12 +164,12 @@ filter.pm.fc<-function(data,f3.YII,f3.fm){
       day.pm$vary.YII<-c(NA,diff(day.pm$YII))/day.pm$YII
       day.pm$vary.Fm<-c(NA,diff(day.pm$Fm_))/day.pm$Fm_
       day.pm$vary.F<- c(NA,diff(day.pm$F_))/day.pm$F_
-      if (isTRUE(f3.YII>=0&f3.fm>=0)){
+      if (isTRUE(f3.YII>=0&f3.Fm>=0)){
 
         ##> impossible cases
         ##> 1. YII increases or has slightly changes, but Fm' decreases a lot
         day.pm$flag3.day[(day.pm$vary.YII>=(-1*f3.YII)&
-                            day.pm$vary.Fm<=(-1*f3.fm))]<-0
+                            day.pm$vary.Fm<=(-1*f3.Fm))]<-0
 
       }
     }
@@ -357,15 +357,15 @@ filter.v.fc<-function(data){
   return(data)
 }
 
-#' Filter MONI-PAM data step 3,remove abnormal F', Fm' and YII value during the day
+#' Filter MONI-PAM data step 3,remove spurious F', Fm' and Y(II) value during the day
 #'
 #' Details see Zhang et al.,202X. paper link url.
 #'
-#' @usage filter3.day(PAM.data,f3.YII=0.02,f3.fm=0.1,f3.fmYII=3,save.path,save.file)
+#' @usage filter3.day(PAM.data,f3.YII=0.02,f3.Fm=0.1,f3.FmYII=3,save.path,save.file)
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter2.night] function.
-#' @param f3.YII the threshold of percentage change of YII between point2 and point1. Default value is 0.02, we recommend this argument can be adjusted from 0.01 to 0.1 by an interval of 0.01.
-#' @param f3.fm the threshold of percentage change of Fm' between point2 and point1. Default value is 0.1, we recommend this argument can be adjusted from 0.05 to 0.3 by a 0.05 interval by an interval of 0.05.
-#' @param f3.fmYII the threshold of ratio between percentage change of Fm' between point2 and point1 and of YII between point2 and point1. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
+#' @param f3.YII the threshold of percentage change of YII between consecutive points. Default value is 0.02, we recommend this argument can be adjusted from 0.01 to 0.1 by an interval of 0.01.
+#' @param f3.Fm the threshold of percentage change of Fm' between consecutive points. Default value is 0.1, we recommend this argument can be adjusted from 0.05 to 0.3 by a 0.05 interval by an interval of 0.05.
+#' @param f3.FmYII the threshold of ratio between percentage change in Fm' between consecutive points and in Y(II) between consecutive points. Default value is 3, we recommend this argument can be adjust between 2 and 5 by an interval of 1.
 #' @param save.path local folder for saving your output file
 #' @param save.file If this argument is set as TRUE, the returned file will be saved to local folder, if FALSE, the file will not be saved into local folder
 
@@ -375,13 +375,13 @@ filter.v.fc<-function(data){
 #' @return [filter3.day] will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter3day.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season respectively. This output file will contain one new column compared with output file from [filter2.night] function named as 'flag3.day'. This column only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset.
 #' @export
 filter3.day<-function(PAM.data,f3.YII=0.02,
-                      f3.fm=0.1,
-                      f3.fmYII=3,
+                      f3.Fm=0.1,
+                      f3.FmYII=3,
                       save.path,
                       save.file)
 {
   start.time<-Sys.time()
-  print('This function will run few mins...')
+  print('This function will run around 1 min.')
   PAM.data<-formatPAMdata(PAM.data = PAM.data)
 
   day.filter<-
@@ -394,19 +394,19 @@ filter3.day<-function(PAM.data,f3.YII=0.02,
         PAM.onetree<-PAM.onetree[order(PAM.onetree$datetime),]
         PAM.onetree$flag3.day<-1
         filter.onetree<-
-          filter.o.fc(data=PAM.onetree,f3.fm=f3.fm,f3.fmYII=f3.fmYII)
+          filter.o.fc(data=PAM.onetree,f3.Fm=f3.Fm,f3.FmYII=f3.FmYII)
         trials <- 0
         print(paste0(i, ' is filtering...'))
         while(nrow(filter.onetree[filter.onetree$flag3.day==0,])>0){
           filter.onetree<-
-            filter.o.fc(data=filter.onetree,f3.fm=f3.fm,f3.fmYII=f3.fmYII)
+            filter.o.fc(data=filter.onetree,f3.Fm=f3.Fm,f3.FmYII=f3.FmYII)
           trials <- trials +1
         }
 
-        filter.onetree2<-filter.pm.fc(data=filter.onetree,f3.YII = f3.YII,f3.fm=f3.fm)
+        filter.onetree2<-filter.pm.fc(data=filter.onetree,f3.YII = f3.YII,f3.Fm=f3.Fm)
         trials <- 0
         while(isTRUE(nrow(filter.onetree2[filter.onetree2$flag3.day==0,])>0)){
-          filter.onetree2<-filter.pm.fc(data=filter.onetree2,f3.YII = f3.YII,f3.fm=f3.fm)
+          filter.onetree2<-filter.pm.fc(data=filter.onetree2,f3.YII = f3.YII,f3.Fm=f3.Fm)
           trials <- trials +1
         }
         filter.onetree3<-filter.v.fc(data=filter.onetree2)
@@ -423,7 +423,7 @@ filter3.day<-function(PAM.data,f3.YII=0.02,
   day.filter[day.filter$flag3.day==0,c('F_','Fm_','YII')]<-NA
 
   day.filter$flag.all<-
-    day.filter$flag1.lowF.YII*day.filter$flag2.night*day.filter$flag3.day
+    day.filter$flag1.lowF*day.filter$flag2.night*day.filter$flag3.day
 
   day.filter<-
     droplevels(day.filter[,c("date", "plot.group","dateBack12h","datetime",
@@ -433,7 +433,7 @@ filter3.day<-function(PAM.data,f3.YII=0.02,
                              "sunset","dusk",
                              "dawn","F_","Fm_",
                              "YII", "par_PAM","temp_PAM","ETR",
-                             'head_tree',"flag1.lowF.YII",
+                             'head_tree',"flag1.lowF",
                              'flag2.night','flag3.day',
                              'flag.all')])
   if (isTRUE(save.file==T)){

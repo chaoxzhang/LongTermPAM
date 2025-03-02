@@ -2,22 +2,18 @@
 % Please edit documentation in R/plotSeasonPara.R
 \name{plotSeasonPara}
 \alias{plotSeasonPara}
-\title{MONI-PAM FV/FM data visualization}
+\title{MONI-PAM seasonal parameters data visualization}
 \usage{
-plotSeasonPara(season.param,save.path,fieldnote,fieldnote.data)
+plotSeasonPara(season.param,save.path)
 }
 \arguments{
 \item{season.param}{seasonal chlorophyll fluorescence parameters retrieved from \link{seasonalParams} function in this R package}
 
 \item{save.path}{local folder for saving the plotted figures generated from this function}
-
-\item{fieldnote}{TRUE or FALSE. If fieldnote = TRUE, fieldnote data should be assigned.}
-
-\item{fieldnote.data}{a fieldnote file which can be such as .csv or .dat file but with a specific data format. You can check the example data from this package using data("fieldnote_2014_2015"). In this dataset, head and tree_num should be same with your MONI-PAM data, text in 'remark.plot' column will be shown in the plotted figure to show what has happened for that 'head'/ 'tree_num'/'head_tree' on which 'datetime' so it should be very short and clean. 'remark' column can can contain full description for remark.plot. 'manager' column shows who found that issue or conducted certain activity for that sensor (e.g., calibration)}
 }
 \value{
-\link{plotSeasonPara} will not return/show the plotted figures in the end, instead, it will save the plotted figures to your folder directly.
+\link{plotSeasonPara} will return/show the plotted seasonal quenching and yield parameters figures in the end, and save the plotted figures to your folder directly.
 }
 \description{
-This function will visualize MONI-PAM FV/FM data including F0,FM,FV/FM,PAR, and temperature in one figure each head.
+This function visualize MONI-PAM seasonal quenching (qLs,PQs, and NPQs) and quantum yield (FV/FM, Phi_NPQs, Phi(f,Ds)) parameters for each head.
 }
