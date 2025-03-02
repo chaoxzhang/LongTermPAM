@@ -37,7 +37,7 @@ scaleFvFm<-function(PAM.fvfm){
     mutate(scale.temp.b=min.FvFm-scale.temp.a*min.temp) %>%
     mutate(scale.par.a=(max.FvFm-min.FvFm)/(max.par-min.par)) %>%
     mutate(scale.par.b= min.FvFm-scale.par.a*min.par)
-    maxmin.res<-data.table(maxmin.res)
+  maxmin.res<-data.table(maxmin.res)
 
   maxmin.res[,c(12,14,16,18)][sapply(maxmin.res[,c(12,14,16,18)],is.na)]<-1
   maxmin.res[,c(13,15,17,19)][sapply(maxmin.res[,c(13,15,17,19)],is.na)]<-0
@@ -88,7 +88,7 @@ plotFVFM<-function(PAM.fvfm,plot.title,save.path){
       plot.data<-PAM.fvfm %>% subset(head_tree==j) %>% droplevels()
 
       if (isTRUE(sum(na.omit(plot.data$FvFm))>0&
-          length(na.omit(plot.data$FvFm))>2)) {#if data exist
+                 length(na.omit(plot.data$FvFm))>2)) {#if data exist
 
         p1<-
           ggplot(plot.data,aes(x=date))+

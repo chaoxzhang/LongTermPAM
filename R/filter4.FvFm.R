@@ -105,7 +105,7 @@ filter.FvFm.fc42<-function(data,f4.Fm,f4.FmYII){
     mutate(flag4.FvFm=case_when(
       (DFvFm<0&DFm>0.5)|
         (DFvFm<0&DF0>0.5)#|
-        #(DFvFm>0&DFm>1&DFvFm<DFm)
+      #(DFvFm>0&DFm>1&DFvFm<DFm)
       ~0
     ))
 
@@ -141,7 +141,7 @@ filter4.FVFM<-function(PAM.data,
                        save.file,
                        f4.Fm=0.15,
                        f4.FmYII=3
-                       ){
+){
   print('This function will run around 1 min.' )
 
   PAM.data<-formatPAMdata(PAM.data = PAM.data)
@@ -152,8 +152,8 @@ filter4.FVFM<-function(PAM.data,
       PAM.onetree<-PAM.data[PAM.data$head_tree==i,]
 
       if (nrow(PAM.onetree[which((!is.na(PAM.onetree$YII))&
-                                  !is.na(PAM.onetree$Fm_)&
-                                  !is.na(PAM.onetree$F_)),])>0) {#if data exsit
+                                 !is.na(PAM.onetree$Fm_)&
+                                 !is.na(PAM.onetree$F_)),])>0) {#if data exsit
 
         ##<<- the data should be filtered following the
         ##<<- correct date and time order
@@ -162,25 +162,25 @@ filter4.FVFM<-function(PAM.data,
         PAM.onetree$flag4.FvFm<-1
         filter.onetreeYII1<-
           filter.FvFm.fc41(data=PAM.onetree,f4.Fm=f4.Fm,
-                               f4.FmYII=f4.FmYII)
+                           f4.FmYII=f4.FmYII)
         trials <- 0
         while(nrow(filter.onetreeYII1[
           filter.onetreeYII1$flag4.FvFm==0,])>0){
           filter.onetreeYII1<-
             filter.FvFm.fc41(filter.onetreeYII1,f4.Fm=f4.Fm,
-                                 f4.FmYII=f4.FmYII)
+                             f4.FmYII=f4.FmYII)
           trials <- trials +1
         }
 
         filter.onetreeYII2<-
           filter.FvFm.fc42(data=filter.onetreeYII1,f4.Fm=f4.Fm,
-                               f4.FmYII=f4.FmYII)
+                           f4.FmYII=f4.FmYII)
         trials <- 0
         while(nrow(filter.onetreeYII2[
           filter.onetreeYII2$flag4.FvFm==0,])>0){
           filter.onetreeYII2<-
             filter.FvFm.fc42(filter.onetreeYII2,f4.Fm=f4.Fm,
-                                 f4.FmYII=f4.FmYII)
+                             f4.FmYII=f4.FmYII)
           trials <- trials +1
         }
 
@@ -212,15 +212,15 @@ filter4.FVFM<-function(PAM.data,
     FvFm.filter$flag.all*FvFm.filter$flag4.FvFm
   FvFm.filter<-
     droplevels(FvFm.filter[,c("date", "plot.group","dateBack12h","datetime",
-                                  "datetimeBack12h","head", "tree_num",
-                                  "sunrise","sunriseEnd",
-                                  "solarNoon","sunsetStart",
-                                  "sunset","dusk",
-                                  "dawn","F_","Fm_","YII",
-                                  "par_PAM","temp_PAM","ETR",'head_tree',
-                                  "flag1.lowF",'flag2.night',
-                                  'flag3.day',
-                                  "flag4.FvFm",'flag.all')])
+                              "datetimeBack12h","head", "tree_num",
+                              "sunrise","sunriseEnd",
+                              "solarNoon","sunsetStart",
+                              "sunset","dusk",
+                              "dawn","F_","Fm_","YII",
+                              "par_PAM","temp_PAM","ETR",'head_tree',
+                              "flag1.lowF",'flag2.night',
+                              'flag3.day',
+                              "flag4.FvFm",'flag.all')])
   if (save.file==T){
     write.table(FvFm.filter,file =
                   paste0(save.path,'/PAM_',year(range(FvFm.filter$date)[1]),

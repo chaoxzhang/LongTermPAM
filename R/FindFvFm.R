@@ -73,7 +73,7 @@ FindFVFM<-function(PAM.data,save.path,save.title, save.file){
   fvfm.all<-fvfm.filldate %>%
     merge(noonmean.PAR,all=T,by=c('date','head_tree','head','tree_num')) %>%
     dplyr::select(date,head_tree,head,tree_num,noonmean_PAR,nightmean_temp,
-           F0,Fm,FvFm)
+                  F0,Fm,FvFm)
 
 
   if (save.file==T) {
