@@ -43,7 +43,7 @@ plotSeasonPara<-function(season.param,
           axis.title.y.right  = element_markdown(size = 18,vjust = -0.5,color = 'blue'),
           axis.title.x =element_blank(),
           plot.margin = unit(c(0,0,0,0),'cm'),
-          strip.text =element_blank(),
+          strip.text = element_text(color='black',size = 16),
           strip.background = element_blank(),
           axis.ticks = element_line(color = 'black',linewidth = 1),
           panel.border = element_rect(color='black',linewidth = 1))
