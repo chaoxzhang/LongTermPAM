@@ -332,7 +332,8 @@ flag2.night<-
                  save.path='saved_data',save.file = T)
 flag2.fvfm<-
   FindFVFM(flag2.night,save.file=T, save.path ='saved_data',save.title = 'Flag 2')
-plotFVFM(flag2.fvfm,plot.title = 'Flag 2 fvfm',save.path='figure5_seasonal_parameters')
+plotFVFM(flag2.fvfm,plot.title = 'Flag 2 fvfm',
+         save.path='figure5_seasonal_parameters')
 plotCheckFilter(dataAfterFilter=flag2.night,dataBeforeFilter = flag0,
                 save.path='figure2_during_filter')
 ```
@@ -419,8 +420,10 @@ format, including the columns:
 'season','head_tree','head','tree_num','FmR' and 'FoR'.
 
 ```{r fig.height=6,fig.width=20}
-FmR.df<-ChlFRef(fvfm.beforeFilter = flag0.fvfm,fvfm.afterFilter = flag6.fvfm,
-                FvFmR = 0.83,save.file = T, save.path = 'figure3_FmR_F0R')
+FmR.df<-ChlFRef(fvfm.beforeFilter = flag0.fvfm,
+                fvfm.afterFilter = flag6.fvfm,
+                FvFmR = 0.83,save.file = T, 
+                save.path = 'figure3_FmR_F0R')
 FmR.df
 ```
 

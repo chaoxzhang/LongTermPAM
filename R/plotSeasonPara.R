@@ -21,7 +21,7 @@ plotSeasonPara<-function(season.param,
   # plot quenching parameters
   plot.quench<-
     ggplot(season.param, aes(x = date)) +
-    facet_grid(.~tree_num)+
+    facet_grid(.~head_tree)+
     geom_line(aes(y=qLs*10),color='blue',size=1,na.rm = T,alpha=0.3)+
     geom_point(aes(y=qLs*10),color='blue',size=1,na.rm = T,alpha=0.3)+
     geom_line(aes(y=PQs),color='black',na.rm = T)+
