@@ -121,7 +121,6 @@ filter.FvFm.fc42<-function(data,f4.Fm,f4.FmYII){
 
 #' Filter MONI-PAM data step 4,remove spurious Fv/Fm (or maximum YII) value for entire observation season
 #'
-#' Details see Zhang et al.,202X. paper link url.
 #'
 #' @usage filter4.FVFM(PAM.data,save.path,save.file,f4.Fm=0.15,f4.FmYII=3)
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter3.day] function.

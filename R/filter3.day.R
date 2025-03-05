@@ -359,7 +359,6 @@ filter.v.fc<-function(data){
 
 #' Filter MONI-PAM data step 3,remove spurious F', Fm' and Y(II) value during the day
 #'
-#' Details see Zhang et al.,202X. paper link url.
 #'
 #' @usage filter3.day(PAM.data,f3.YII=0.02,f3.Fm=0.1,f3.FmYII=3,save.path,save.file)
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter2.night] function.

@@ -31,7 +31,6 @@ filter.expand.fc<-function(data,f5.Fm,f5.FmYII){
 
 #' Filter MONI-PAM data step 5,remove undetected F', Fm', and Y(II) points from previous functions
 #'
-#' Details see Zhang et al.,202X. paper link url.
 #'
 #' @usage filter5.expand(PAM.data,save.path,save.file,f5.Fm=0.2,f5.FmYII=3)
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter4.FVFM] function.

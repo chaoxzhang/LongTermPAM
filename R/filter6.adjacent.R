@@ -1,6 +1,5 @@
 #' Filter MONI-PAM data step 6,remove additionally a few more data points adjacent to the previously filtered data
 #'
-#' Details see Zhang et al.,202X. paper link url.
 #'
 #' @usage filter6.adjacent(PAM.data,save.path,save.file,expand.time)
 #' @param PAM.data a data.table or data.frame MONI-PAM data generated from [filter5.expand] function.

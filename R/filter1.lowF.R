@@ -1,6 +1,5 @@
 #' Filter MONI-PAM data step 1,remove spurious low F' and Fm' values
 #'
-#' Details see Zhang et al.,2025, in submission.
 #'
 #' @usage filter1.lowF(PAM.data,save.path,save.file)
 #' @param PAM.data a combined and organized MONI-PAM data which is generated from [readPAM] function.

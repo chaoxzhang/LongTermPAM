@@ -48,7 +48,6 @@ filter.night.fc<-function(data,period,f2.Fm,f2.FmYII){
 
 #' Filter PAM-PAM data step 2,remove spurious F', Fm' and Y(II) value from the night
 #'
-#' Details see Zhang et al.,202X. paper link url.
 #'
 #' @usage filter2.night(PAM.data,f2.Fm=0.03,f2.FmYII=3,save.path,save.file)
 #' @param PAM.data a data.table or data.frame PAM-PAM data generated from [filter1.lowF] function.
