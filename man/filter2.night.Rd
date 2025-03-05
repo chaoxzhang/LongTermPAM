@@ -21,5 +21,5 @@ filter2.night(PAM.data,f2.Fm=0.03,f2.FmYII=3,save.path,save.file)
 \link{filter2.night} will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter2night.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season respectively. This output file will contain one new column compared with output file from \link{filter1.lowF} function named as 'flag2.night'. This column only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset.
 }
 \description{
-Details see Zhang et al.,202X. paper link url.
+Filter PAM-PAM data step 2,remove spurious F', Fm' and Y(II) value from the night
 }

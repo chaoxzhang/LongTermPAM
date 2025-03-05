@@ -21,5 +21,5 @@ filter5.expand(PAM.data,save.path,save.file,f5.Fm=0.2,f5.FmYII=3)
 \link{filter5.expand} will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter5expand.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season respectively. This output file will contain one new column compared with output file from \link{filter4.FvFm} function named as 'flag5.expand'. This column only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset.
 }
 \description{
-Details see Zhang et al.,202X. paper link url.
+Filter MONI-PAM data step 5,remove undetected F', Fm', and Y(II) points from previous functions
 }

@@ -23,5 +23,5 @@ filter3.day(PAM.data,f3.YII=0.02,f3.Fm=0.1,f3.FmYII=3,save.path,save.file)
 \link{filter3.day} will return a data table. Meanwhile, if save.file = TRUE, the output data.table will also be saved into local folder as a 'PAM_Year1_Year2_filter3day.dat' file, where Year1 and Year2 are the minimum and maximum year during this observation season respectively. This output file will contain one new column compared with output file from \link{filter2.night} function named as 'flag3.day'. This column only contain two values: 0 and 1, where 0 means F', Fm' and YII in corresponding row(s) are abnormal data and should be removed from the dataset and 1 means good dataset.
 }
 \description{
-Details see Zhang et al.,202X. paper link url.
+Filter MONI-PAM data step 3,remove spurious F', Fm' and Y(II) value during the day
 }

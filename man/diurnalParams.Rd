@@ -21,8 +21,5 @@ diurnalParams(filtered.data,FmR.data,save.file,save.path)
 This function will return a data frame including estimated diurnal parameters and original data
 }
 \description{
-This function estimated diurnal parameters,including quenching parameters - PQ, qLT,NPQT, and NPQr, and yield parameters - Phi_NPQT, Phi_NPQr, and Phi_fD. Please see calculation method and parameter description in Porcar-Castell et al. 2011 and Zhang et al. XX
-}
-\references{
-reference Porcar‐Castell, A. (2011). A high‐resolution portrait of the annual dynamics of photochemical and non‐photochemical quenching in needles of Pinus sylvestris. Physiologia Plantarum, 143(2), 139-153. https://doi.org/10.1111/j.1399-3054.2011.01488.x
+This function estimated diurnal parameters,including quenching parameters - PQ, qLT,NPQT, and NPQr, and yield parameters - Phi_NPQT, Phi_NPQr, and Phi_fD.
 }
