@@ -25,13 +25,13 @@ This file includes the detailed instruction of **how to use LongTermPAM
 R package to clean or filter long-term Monitoring PAM (MONI-PAM)
 chlorophyll fluorescence (ChlF) data and calculate ChlF parameters**.
 The background of this R package, such as filter logical and parameter
-calculations, can be found in Zhang et al., (2025 in submission).
+calculations, can be found in Anonymous  et al., (2025 in submission).
 
 # Install LongTermPAM package using:
 
 ```{r}
 # Note: The # symbol is used for commenting, not for actual code execution. To run the following code, simply remove # at the beginning.
-#remotes::install_github("chaoxzhang/LongTermPAM", build_vignettes = TRUE)
+#remotes::install_github("Anonymous/LongTermPAM", build_vignettes = TRUE)
 ```
 
 # Example datasets
@@ -39,7 +39,6 @@ calculations, can be found in Zhang et al., (2025 in submission).
 **To test the code with an example data-set**, you can run this
 Rmarkdown file ("Intro_To_LongTermPAM.Rmd"). First download it to a
 local directory, the file is located here:
-"<https://github.com/chaoxzhang/LongTermPAM/tree/main/vignettes/>".
 
 This introduction includes **two example datasets** recorded at the
 Hyytiälä field station in Finland: one from the 2014–2015 observation
@@ -49,7 +48,7 @@ period and another from 2016–2017.
 **Section 4** focuses on data processing for the 2016–2017 dataset.
 
 **The example dataset is located here:**
-"<https://github.com/chaoxzhang/LongTermPAM/tree/main/inst/extdata>".
+
 
 Once you have installed the LongTermPAM R package on your computer,
 these example datasets will be included and can be accessed using the
@@ -312,7 +311,7 @@ plotCheckFilter(dataAfterFilter=flag1.lowF,dataBeforeFilter=flag0,
 
 For steps 2 to 6, you must set various threshold parameters that affect
 filter performance. Detailed about the meanings of these parameters or
-arguments can be found in R help page and in the paper Zhang et al.,
+arguments can be found in R help page and in the paper Anonymous ,
 (2015, in submission). You need to carefully (visually) check the
 cleaned data (figure output from **plotCheckFilter** function). This is
 why there is always **plotFVFM** and **plotCheckFilter** function in the
@@ -401,7 +400,7 @@ plotCheckFilter(dataAfterFilter=flag6.adjacent,dataBeforeFilter=flag0,
 
 To calculate additional chlorophyll fluorescence parameters, Fm
 reference (FmR) and Fo reference (FoR) are needed. See **ChlFRef**
-function help and Zhang et al., 2015 in submission for detailed
+function help and Anonymous et al., 2015 in submission for detailed
 estimation instructions.
 
 The output of ChlFRef function include:
@@ -434,10 +433,8 @@ This function estimates diurnal parameters,including:
 (1) quenching parameters: PQ, qL~T~, NPQ~T~, and NPQr;
 
 (2) quantum yield parameters: $\Phi$P [or Y(II)], $\Phi$NPQ~T~,
-    $\Phi$f,D, and $\Phi$NPQr . Please see calculation method and
-    parameter description in Porcar-Castell et al. 2011 and Zhang et
-    al.XX
-
+    $\Phi$f,D, and $\Phi$NPQr .
+    
 ```{r}
 diurn.para<-diurnalParams(filtered.data = flag6.adjacent,
                           filtered.fvfm = flag6.fvfm,
@@ -452,9 +449,7 @@ This function estimates seasonal parameters,including:
 (1) quenching parameters: PQ~S~, qL~S~, and NPQ~S~;
 
 (2) quantum yield parameters: F~V~/F~M~, $\Phi$NPQ~S~, and $\Phi$f,D~S~.
-    Please see calculation method and parameter description in
-    Porcar-Castell et al. 2011 and Zhang et al.XX
-
+  
 ```{r}
 seas.para<- seasonalParams(fvfm.afterFilter = flag6.fvfm,
                            FmR.data = FmR.df,

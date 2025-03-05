@@ -1,10 +1,10 @@
 # LongTermPAM
 
-The LongTermPAM package provides a means to automatically identify and filter spurious observations in F', Fm' and quantum yield of photosystem II (Y(II) or ΦP) caused by such as snow and condensation in long-term Monitoring PAM measurements, and calculate different chlorophyll fluorescence (ChlF) parameters. Detailed instruction of this package can be found in Zhang et al., (2025, in submission).
+The LongTermPAM package provides a means to automatically identify and filter spurious observations in F', Fm' and quantum yield of photosystem II (Y(II) or ΦP) caused by such as snow and condensation in long-term Monitoring PAM measurements, and calculate different chlorophyll fluorescence (ChlF) parameters. Detailed instruction of this package can be found in XX.
 
 ## Install LongTermPAM R package using:
 
-`{remotes::install_github("chaoxzhang/LongTermPAM", build_vignettes = TRUE)}`
+`{remotes::install_github("Anonymous/LongTermPAM", build_vignettes = TRUE)}`
 
 ## The workflow consists of three steps:
 
@@ -32,12 +32,12 @@ Users can download and use this introduction file directly to process their own 
 
 ## Cite this R package using:
 
-![](https://zenodo.org/badge/DOI/10.5281/zenodo.14918626.svg)
+**add later**
 
 **All output data and figures can be accessed here:**
 
-<https://doi.org/10.5281/zenodo.14922468>
+add later
 
 ## Reference:
 
-Chao Zhang, Erhard E. Pfündel, Jon Atherton, Juho Aalto, Jia Bai, Toivo Pohja, Paulina Rajewicz and Albert Porcar-Castell. A practical guide to long-term field PAM chlorophyll fluorescence measurements: setup, installation, data processing with R package ‘LongTermPAM’ and interpretation. (in submission)
+Reference will be added later on.

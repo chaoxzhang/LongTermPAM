@@ -1,11 +1,7 @@
 Package: LongTermPAM
 Title: Organization, cleaning and parameter retrieval of long term monitering PAM chlorophyll fluorescence data 
 Version: 1.0.0
-Authors@R: c(
-    person("Chao","Zhang", email="zhangchaolzu2013@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-7327-9477")),
-    person("Albert","Porcar-Castell",email = "joan.porcar@helsinki.fi", role = "aut"),
-    person("Jon","Atherton", email = "jon.atherton@helsinki.fi", role = c("ctb")))
+Authors@R: 
 Description: reorganize and clean MONI-PAM data, andcalculate additional chlorophyll fluorescence parameters.
 License: MIT + file LICENSE
 Encoding: UTF-8
