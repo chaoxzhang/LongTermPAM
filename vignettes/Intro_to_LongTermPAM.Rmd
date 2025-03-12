@@ -25,13 +25,13 @@ This file includes the detailed instruction of **how to use LongTermPAM
 R package to clean or filter long-term Monitoring PAM (MONI-PAM)
 chlorophyll fluorescence (ChlF) data and calculate ChlF parameters**.
 The background of this R package, such as filter logical and parameter
-calculations, can be found in Anonymous  et al., (2025 in submission).
+calculations, can be found in Zhang  et al., (2025 in submission).
 
 # Install LongTermPAM package using:
 
 ```{r}
 # Note: The # symbol is used for commenting, not for actual code execution. To run the following code, simply remove # at the beginning.
-#remotes::install_github("Anonymous/LongTermPAM", build_vignettes = TRUE)
+#remotes::install_github("chaoxzhang/LongTermPAM", build_vignettes = TRUE)
 ```
 
 # Example datasets
@@ -311,7 +311,7 @@ plotCheckFilter(dataAfterFilter=flag1.lowF,dataBeforeFilter=flag0,
 
 For steps 2 to 6, you must set various threshold parameters that affect
 filter performance. Detailed about the meanings of these parameters or
-arguments can be found in R help page and in the paper Anonymous ,
+arguments can be found in R help page and in the paper Zhang ,
 (2015, in submission). You need to carefully (visually) check the
 cleaned data (figure output from **plotCheckFilter** function). This is
 why there is always **plotFVFM** and **plotCheckFilter** function in the
@@ -400,7 +400,7 @@ plotCheckFilter(dataAfterFilter=flag6.adjacent,dataBeforeFilter=flag0,
 
 To calculate additional chlorophyll fluorescence parameters, Fm
 reference (FmR) and Fo reference (FoR) are needed. See **ChlFRef**
-function help and Anonymous et al., 2015 in submission for detailed
+function help and Zhang et al., 2015 in submission for detailed
 estimation instructions.
 
 The output of ChlFRef function include:
