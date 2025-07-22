@@ -10,7 +10,6 @@
 #' @importFrom lubridate ymd hour year month ymd_hms date day wday second isoweek yday week minute mday quarter
 #' @importFrom data.table data.table setDT
 #' @import dplyr
-#' @references
 #' @return This function will return a data frame including new estimated seasonal parameters and Fv/Fm data
 #' @export
 seasonalParams<-function(fvfm.afterFilter,

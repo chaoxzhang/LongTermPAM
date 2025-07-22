@@ -11,7 +11,6 @@
 #'
 #' @import dplyr
 #'
-#' @references
 #' @return This function will return a data frame including estimated diurnal parameters and original data
 #' @export
 diurnalParams<-function(filtered.data,

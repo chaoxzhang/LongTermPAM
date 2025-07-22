@@ -28,7 +28,7 @@ ChlFRef<-function(fvfm.beforeFilter,
            head_tree=as.factor(head_tree)) %>%
     mutate(season=paste0(range(lubridate::year(date))[1],'_',
                          range(lubridate::year(date))[2]),
-           var='Before filter')
+           var='After filter')
 
   fvfm.beforeFilter<-
     fvfm.beforeFilter %>%
@@ -36,7 +36,7 @@ ChlFRef<-function(fvfm.beforeFilter,
            head_tree=as.factor(head_tree)) %>%
     mutate(season=paste0(range(lubridate::year(date))[1],'_',
                          range(lubridate::year(date))[2]),
-           var='After filter')
+           var='Before filter')
 
   FmR.fc<-function(data){
 
