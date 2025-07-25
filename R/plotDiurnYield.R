@@ -96,8 +96,6 @@ plotDiurnYield<-function(diurnal.para,
               geom_line(aes(y=(par_PAM-min(par_PAM,na.rm = T))/
                               (max(par_PAM,na.rm = T)-min(par_PAM,na.rm = T))),
                         color='yellow3',na.rm = T,size=1)+
-              geom_line(aes(y=Phi_NPQr),color='darkred',na.rm = T)+
-              geom_point(aes(y=Phi_NPQr),size=0.5,color='darkred',na.rm = T)+
               scale_fill_manual(values = c('forestgreen','blue','red'),
                                 labels=c(expression(Phi*'P [Y(II)]' ),
                                          expression(Phi*'NPQ'['T']),
@@ -142,9 +140,6 @@ plotDiurnYield<-function(diurnal.para,
                 geom_line(aes(y=(par_PAM-min(par_PAM,na.rm = T))/
                                 (max(par_PAM,na.rm = T)-min(par_PAM,na.rm = T))),
                           linewidth=0.1,color='white',na.rm = T)+
-
-                geom_line(aes(y=Phi_NPQr),color='white',na.rm = T)+
-                geom_point(aes(y=Phi_NPQr),size=1,color='white',na.rm = T)+
                 theme_minimal()+
                 theme(legend.position = 'none',
                       axis.text.y.right = element_text(size = 15,color = p2.color),
