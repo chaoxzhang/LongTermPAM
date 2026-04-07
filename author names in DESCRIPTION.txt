@@ -1,5 +1,0 @@
-c(
-    person("Chao","Zhang", email="zhangchaolzu2013@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-7327-9477")),
-    person("Albert","Porcar-Castell",email = "joan.porcar@helsinki.fi", role = "aut"),
-    person("Jon","Atherton", email = "jon.atherton@helsinki.fi", role = c("ctb")))
