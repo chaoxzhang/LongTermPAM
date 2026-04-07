@@ -66,7 +66,7 @@ plotSeasonPara<-function(season.param,
   plot.yield<-
     season.yield %>%
     ggplot(aes(date,Yield.value,fill=Yield.name))+
-    geom_area( size=1)+
+    geom_col( width=1,position = 'stack')+
     facet_wrap(~head_tree,nrow = 1)+
     scale_fill_manual(values = c('forestgreen','blue','red'),
                       labels=c(expression('F'[V]*'/'*'F'[M]),

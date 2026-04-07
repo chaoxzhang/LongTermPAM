@@ -132,10 +132,12 @@ ChlFRef<-function(fvfm.beforeFilter,
                     mapping=aes(x=Inf,y=Inf,label=paste0('N=',N)))+
           geom_text(data = FR, color='black',hjust=2,vjust=5,size=4,
                     mapping=aes(x=Inf,y=Inf,label=paste0('RRMSE=',RRMSE)))+
-          geom_text(data = FR, color='red',hjust=2.3,vjust=7,size=4,
-                    mapping=aes(x=Inf,y=Inf,label=paste0('FmR','=',FmR)))+
-          geom_text(data = FR, color='red',hjust=2.6,vjust=9,size=4,
-                    mapping=aes(x=Inf,y=Inf,label=paste0('F0R','=',F0R)))+
+          geom_text(data = FR, color='red',hjust=2.3,vjust=6,size=4,
+                    mapping=aes(x=Inf,y=Inf,label=paste0("F[MR] ==",FmR)),
+                    parse=T)+
+          geom_text(data = FR, color='red',hjust=2.6,vjust=8,size=4,
+                    mapping=aes(x=Inf,y=Inf,label=paste0("F[0*R] ==",F0R)),
+                    parse=T)+
           theme_bw()+
           theme(axis.text.y = element_text(color='black',size=11),
                 axis.text.x = element_markdown(color='black',size=11),
